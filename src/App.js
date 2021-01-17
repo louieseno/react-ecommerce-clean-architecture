@@ -1,12 +1,13 @@
 import React from "react"
 import { Provider } from "react-redux"
 import "./styles/App.sass"
-import Button from "react-bulma-components/lib/components/button"
+import "./styles/App.css"
 import { store } from "./boot"
+import RouterManager from "../src/RouteManager"
+
 const App = () => (
     <Provider store={store}>
-        <p>React ecommerce</p>
-        <Button color="primary">My Bulma button</Button>
+        <RouterManager />
     </Provider>
 )
 

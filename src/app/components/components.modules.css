@@ -1,0 +1,9 @@
+.mainContent{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: grey;
+}
+.mainContent > footer {
+    margin-top: auto;
+}
