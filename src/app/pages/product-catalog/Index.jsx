@@ -15,9 +15,9 @@ function ItemGrids() {
         </div>
     )
 }
-const MainPage = () => {
+const ProductCatalog = () => {
     var ContentDetails = Content(ItemGrids)
 
     return <>{ContentDetails}</>
 }
-export default MainPage
+export default ProductCatalog

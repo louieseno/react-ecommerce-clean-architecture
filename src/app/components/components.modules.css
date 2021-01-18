@@ -1,4 +1,4 @@
-.mainContent{
+.mainContent {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -6,4 +6,18 @@
 }
 .mainContent > footer {
     margin-top: auto;
+}
+.footer-columns > div > .foot-header {
+    font-weight: bold;
+}
+
+.footer-columns > div > a {
+    display: block;
+}
+
+.footer-columns > div > .social-media-icons {
+    display: inline-flex;
+}
+.footer-columns > div > .social-media-icons > span {
+    margin: 10px;
 }

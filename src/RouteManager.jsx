@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import MainPage from "./app/pages/main-page/Index"
+import MainPage from "./app/pages/product-catalog/Index"
 
 const RouterManager = () => {
     const routes = (
