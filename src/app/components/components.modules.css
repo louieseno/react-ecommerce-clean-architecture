@@ -21,3 +21,11 @@
 .footer-columns > div > .social-media-icons > span {
     margin: 10px;
 }
+
+.navbar-end-items > .icon {
+    margin: 0px 20px;
+}
+
+.navbar {
+    height: 4rem;
+}
