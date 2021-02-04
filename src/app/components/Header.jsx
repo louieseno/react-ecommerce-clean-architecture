@@ -2,6 +2,19 @@ import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
 
+const iconButton = (iconData) => {
+    return (
+        <button className="button is-white">
+            <span className="icon">
+                <FontAwesomeIcon icon={iconData} size="lg" />
+            </span>
+        </button>
+    )
+}
+
+const categories = (text) => {
+    return <a className="navbar-item">{text}</a>
+}
 const Header = () => {
     const [isActive, setisActive] = useState(false)
     return (
@@ -31,9 +44,9 @@ const Header = () => {
 
                     <div id="navbarBasicExample" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
                         <div className="navbar-start">
-                            <a className="navbar-item">Women</a>
-                            <a className="navbar-item">Men</a>
-                            <a className="navbar-item">Kids</a>
+                            {categories("Women")}
+                            {categories("Men")}
+                            {categories("Kids")}
                         </div>
                         <div className="navbar-end">
                             <div className="navbar-item">
@@ -42,12 +55,8 @@ const Header = () => {
 
                             <div className="navbar-item">
                                 <div className="navbar-end-items">
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon={faUser} size="lg" />
-                                    </span>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon={faCartPlus} size="lg" />
-                                    </span>
+                                    {iconButton(faUser)}
+                                    {iconButton(faCartPlus)}
                                 </div>
                             </div>
                         </div>
