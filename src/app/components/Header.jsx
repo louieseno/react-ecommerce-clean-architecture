@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
+import { useHistory } from "react-router-dom"
 
-const iconButton = (iconData) => {
+const iconButton = ({ iconData, callBack }) => {
     return (
-        <button className="button is-white">
+        <button className="button is-white" onClick={() => callBack()}>
             <span className="icon">
                 <FontAwesomeIcon icon={iconData} size="lg" />
             </span>
@@ -16,6 +17,7 @@ const categories = (text) => {
     return <a className="navbar-item">{text}</a>
 }
 const Header = () => {
+    const history = useHistory()
     const [isActive, setisActive] = useState(false)
     return (
         <header className="header">
@@ -55,8 +57,8 @@ const Header = () => {
 
                             <div className="navbar-item">
                                 <div className="navbar-end-items">
-                                    {iconButton(faUser)}
-                                    {iconButton(faCartPlus)}
+                                    {iconButton({ iconData: faUser, callBack: () => history.push("/auth/v1/login") })}
+                                    {iconButton({ iconData: faCartPlus, callBack: () => console.log("cart") })}
                                 </div>
                             </div>
                         </div>
