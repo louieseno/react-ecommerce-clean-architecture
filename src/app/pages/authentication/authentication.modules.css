@@ -1,0 +1,14 @@
+.card-wrapper {
+    padding: 2.5rem;
+}
+.login-text {
+    margin-bottom: 1rem;
+}
+
+.login-utils-wrapper {
+    font-size: 12px;
+}
+
+.login-utils-wrapper > .sign-up {
+    margin-top: 10px;
+}
