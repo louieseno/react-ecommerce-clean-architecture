@@ -24,12 +24,15 @@
     margin: 10px;
 }
 /* Header */
+.navbar-item img {
+    max-height: 3.5rem !important;
+}
 .navbar-end-items > .button {
     margin: 0px 25px;
 }
 
 .navbar {
-    height: 4rem;
+    height: 4.5rem;
 }
 
 /* Loader */

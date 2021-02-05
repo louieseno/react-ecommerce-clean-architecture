@@ -24,9 +24,9 @@ const Header = () => {
             <div className="content has-text-centered">
                 <nav className="navbar" role="navigation" aria-label="main navigation">
                     <div className="navbar-brand">
-                        <a className="navbar-item" href="https://bulma.io">
-                            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
-                        </a>
+                        <div className="navbar-item">
+                            <img src="/logo.png" />
+                        </div>
                         {/* Hamburger Icon for touch devices */}
                         <a
                             onClick={() => {
@@ -48,7 +48,6 @@ const Header = () => {
                         <div className="navbar-start">
                             {categories("Women")}
                             {categories("Men")}
-                            {categories("Kids")}
                         </div>
                         <div className="navbar-end">
                             <div className="navbar-item">
