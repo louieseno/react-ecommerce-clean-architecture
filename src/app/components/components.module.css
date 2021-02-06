@@ -3,7 +3,9 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: grey;
+    background-color: #01d1b2;
+    background-size: cover;
+    box-shadow: inset 0 0 0 100vh rgba(255, 255, 255, 0.1);
 }
 .mainContent > footer {
     margin-top: auto;
