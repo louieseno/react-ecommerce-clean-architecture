@@ -1,7 +1,3 @@
-/* Icon Button */
-.icon-button {
-    cursor: pointer;
-}
 /* Content */
 .mainContent {
     display: flex;
@@ -13,43 +9,48 @@
     margin-top: auto;
 }
 /* Footer */
-.footer-columns > div > .foot-header {
+.footWrapper > div > p:not(:last-child) {
     font-weight: bold;
 }
 
-.footer-columns > div > a {
+.footWrapper > div > a {
     display: block;
 }
 
-.footer-columns > div > .social-media-icons {
+.footWrapper > div > .social-media-icons {
     display: inline-flex;
 }
-.footer-columns > div > .social-media-icons > span {
+span {
     margin: 10px;
 }
 /* Header */
-.navbar-item {
+.navbarItem {
     padding: 0px;
 }
-.navbar-item img {
+.navbarItem img {
     max-height: 3.5rem !important;
 }
-.navbar-end-items {
+.navbarEnditems {
     margin: 0px 10px;
 }
-.navbar-end-items > .icon {
+.navbarEnditems > span {
     margin: 0px 30px;
     color: white;
     font-size: 18px;
 }
 
-.navbar {
+.navbarWrapper {
     height: 4rem;
     background-color: #06d6a0;
 }
 
+/* Icon Button */
+.iconButton {
+    cursor: pointer;
+}
+
 /* Loader */
-.body-spinner {
+.bodySpinner {
     display: flex;
     justify-content: center;
     align-items: center;

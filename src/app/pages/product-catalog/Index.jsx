@@ -16,7 +16,7 @@ function ItemGrids() {
     )
 }
 const ProductCatalog = () => {
-    var ContentDetails = Content(ItemGrids)
+    var ContentDetails = Content(ItemGrids, true, true)
 
     return <>{ContentDetails}</>
 }

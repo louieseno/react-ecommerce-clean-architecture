@@ -1,14 +1,14 @@
 import React from "react"
 import Header from "./Header"
 import Footer from "./Footer"
-import "./components.modules.css"
-
-var Content = function (WrappedComponent) {
+import style from "./components.module.css"
+const { mainContent } = style
+var Content = function (WrappedComponent, includeHeader, includeFooter) {
     return (
-        <div className="mainContent">
-            <Header></Header>
+        <div className={mainContent}>
+            {includeHeader && <Header></Header>}
             <WrappedComponent></WrappedComponent>
-            <Footer></Footer>
+            {includeFooter && <Footer></Footer>}
         </div>
     )
 }
