@@ -1,6 +1,11 @@
 import React from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons"
+
+import IconButton from "./IconButton"
+
+const _openSocialMedia = (url) => {
+    window.open(url, "_blank")
+}
 
 const Footer = () => {
     return (
@@ -27,12 +32,16 @@ const Footer = () => {
                     <div className="column">
                         <p className="foot-header">We Wear Where Social Account</p>
                         <div className="social-media-icons">
-                            <span className="icon">
-                                <FontAwesomeIcon icon={faFacebook} size="2x" />
-                            </span>
-                            <span className="icon">
-                                <FontAwesomeIcon icon={faInstagram} size="2x" />
-                            </span>
+                            <IconButton
+                                iconData={faFacebook}
+                                sizeData={"2x"}
+                                callBack={() => _openSocialMedia("https://www.facebook.com/WeWearWhere")}
+                            />
+                            <IconButton
+                                iconData={faInstagram}
+                                sizeData={"2x"}
+                                callBack={() => _openSocialMedia("https://www.instagram.com/we_wear_where/")}
+                            />
                         </div>
                     </div>
                 </div>

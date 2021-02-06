@@ -1,3 +1,7 @@
+/* Icon Button */
+.icon-button {
+    cursor: pointer;
+}
 /* Content */
 .mainContent {
     display: flex;
@@ -24,15 +28,24 @@
     margin: 10px;
 }
 /* Header */
-.navbar-item img {
-    max-height: 4rem !important;
+.navbar-item {
+    padding: 0px;
 }
-.navbar-end-items > .button {
-    margin: 0px 25px;
+.navbar-item img {
+    max-height: 3.5rem !important;
+}
+.navbar-end-items {
+    margin: 0px 10px;
+}
+.navbar-end-items > .icon {
+    margin: 0px 30px;
+    color: white;
+    font-size: 18px;
 }
 
 .navbar {
-    height: 4.5rem;
+    height: 4rem;
+    background-color: #06d6a0;
 }
 
 /* Loader */

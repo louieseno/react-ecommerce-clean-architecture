@@ -1,21 +1,9 @@
 import React, { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useHistory } from "react-router-dom"
+import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
 
-const iconButton = ({ iconData, callBack }) => {
-    return (
-        <button className="button is-white" onClick={() => callBack()}>
-            <span className="icon">
-                <FontAwesomeIcon icon={iconData} size="lg" />
-            </span>
-        </button>
-    )
-}
+import IconButton from "./IconButton"
 
-const categories = (text) => {
-    return <a className="navbar-item">{text}</a>
-}
 const Header = () => {
     const history = useHistory()
     const [isActive, setisActive] = useState(false)
@@ -45,19 +33,19 @@ const Header = () => {
                     </div>
 
                     <div id="navbarBasicExample" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
-                        <div className="navbar-start">
-                            {categories("Women")}
-                            {categories("Men")}
-                        </div>
                         <div className="navbar-end">
                             <div className="navbar-item">
-                                <input className="input is-normal" type="text" placeholder="Search Item" />
-                            </div>
-
-                            <div className="navbar-item">
                                 <div className="navbar-end-items">
-                                    {iconButton({ iconData: faUser, callBack: () => history.push("/auth/v1/login") })}
-                                    {iconButton({ iconData: faCartPlus, callBack: () => console.log("cart") })}
+                                    <IconButton
+                                        iconData={faUser}
+                                        sizeData={"lg"}
+                                        callBack={() => history.push("/auth/v1/login")}
+                                    />
+                                    <IconButton
+                                        iconData={faCartPlus}
+                                        sizeData={"lg"}
+                                        callBack={() => console.log("here")}
+                                    />
                                 </div>
                             </div>
                         </div>
