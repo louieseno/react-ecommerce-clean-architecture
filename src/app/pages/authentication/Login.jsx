@@ -1,5 +1,4 @@
 import React from "react"
-import { useHistory } from "react-router-dom"
 import Content from "app/components/Content"
 import style from "./authentication.module.css"
 const { authUtilsWrapper, cardWrapper, forgotPassword } = style
