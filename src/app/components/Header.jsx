@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
-
+import logo from "assets/img/logo.png"
 import IconButton from "./IconButton"
 import style from "./components.module.css"
 const { navbarWrapper, navbarItem, navbarEnditems } = style
@@ -15,7 +15,7 @@ const Header = () => {
                 <nav className={`navbar ${navbarWrapper}`} role="navigation" aria-label="main navigation">
                     <div className="navbar-brand">
                         <div className={`navbar-item ${navbarItem}`}>
-                            <img src="/logo.png" />
+                            <img src={logo} />
                         </div>
                         {/* Hamburger Icon for touch devices */}
                         <a
