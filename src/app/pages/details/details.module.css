@@ -1,0 +1,14 @@
+.infoWrapper {
+    line-height: 1.5rem;
+    color: whitesmoke;
+    font-size: 30px;
+}
+
+.infoBg {
+    background: url("../../../assets/img/about-bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 60vh;
+}

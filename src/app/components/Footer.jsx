@@ -1,6 +1,5 @@
 import React from "react"
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons"
-
 import IconButton from "./IconButton"
 import style from "./components.module.css"
 const { footWrapper } = style
@@ -16,7 +15,7 @@ const Footer = () => {
                 <div className={`content columns ${footWrapper}`}>
                     <div className="column">
                         <p>About We Wear Where</p>
-                        <a href="">Information</a>
+                        <a href="/information">Information</a>
                     </div>
                     <div className="column">
                         <p>Help</p>

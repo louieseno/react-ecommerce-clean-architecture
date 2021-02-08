@@ -1,5 +1,6 @@
 import React from "react"
 import Content from "app/components/Content"
+import { useHistory } from "react-router-dom"
 import style from "./authentication.module.css"
 const { authUtilsWrapper, cardWrapper, forgotPassword } = style
 function LoginContent() {
