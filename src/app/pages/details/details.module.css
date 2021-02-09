@@ -1,14 +1,36 @@
-.infoWrapper {
-    line-height: 1.5rem;
+.infoText {
     color: whitesmoke;
+    text-align: center;
+    line-height: 3rem;
     font-size: 30px;
+    padding: 2rem;
+    margin: 0 10rem;
+    background: rgba(0, 0, 0, 0.6);
 }
 
-.infoBg {
-    background: url("../../../assets/img/about-bg.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+.infoHeader {
+    color: #0ed6a0;
+}
+
+.infoImage {
+    background: url("/src/assets/img/about-bg.jpg");
     background-size: cover;
-    height: 60vh;
+}
+/* Mobile */
+@media only screen and (max-width: 425px) {
+    .infoText {
+        line-height: 2.5rem;
+        font-size: 25px;
+        padding: 1.5rem;
+        margin: 0;
+    }
+}
+/* Big Laptop */
+@media only screen and (min-width: 1024px) {
+    .infoText {
+        line-height: 3.5rem;
+        font-size: 30px;
+        padding: 3rem;
+        margin: 0 10px;
+    }
 }

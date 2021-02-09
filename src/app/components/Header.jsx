@@ -15,7 +15,7 @@ const Header = () => {
                 <nav className={`navbar ${navbarWrapper}`} role="navigation" aria-label="main navigation">
                     <div className="navbar-brand">
                         <div className={`navbar-item ${navbarItem}`}>
-                            <img src={logo} />
+                            <img src={logo} alt="We Wear Where" onClick={() => history.push("/")} />
                         </div>
                         {/* Hamburger Icon for touch devices */}
                         <a
