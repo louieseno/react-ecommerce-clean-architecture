@@ -5,6 +5,7 @@
 
 .detailWrapper {
     background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
 }
 
 /*Information*/
@@ -12,7 +13,6 @@
     text-align: center;
     line-height: 3rem;
     font-size: 30px;
-    padding: 2rem;
 }
 .infoImage {
     background: url("/src/assets/img/about-bg.jpg");
@@ -23,13 +23,11 @@
 @media only screen and (max-width: 425px) {
     .infoText {
         line-height: 2.5rem;
-        padding: 1.5rem;
     }
 }
 /* Big Laptop */
 @media only screen and (min-width: 1024px) {
     .infoText {
         line-height: 3.5rem;
-        padding: 2.5rem;
     }
 }

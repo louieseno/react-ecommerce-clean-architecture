@@ -4,8 +4,8 @@ import styles from "./details.module.css"
 const { detailHeader, detailWrapper, infoImage } = styles
 function ContactContent() {
     return (
-        <div className={`columns is-centered ${infoImage}`}>
-            <div className={`column is-two-fifths has-text-centered hero-body ${detailWrapper}`}>
+        <div className={`columns is-centered hero-body ${infoImage}`}>
+            <div className={`column is-two-fifths has-text-centered  ${detailWrapper}`}>
                 <p className={detailHeader}>{"Contact Us By Email"}</p>
 
                 <div className="field">

@@ -28,6 +28,7 @@ span {
 }
 .navbarItem img {
     max-height: 3.5rem !important;
+    cursor: pointer;
 }
 .navbarEnditems {
     margin: 0px 10px;

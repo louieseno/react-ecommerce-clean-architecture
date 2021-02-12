@@ -17,7 +17,6 @@ const Header = () => {
                         <div className={`navbar-item ${navbarItem}`}>
                             <img src={logo} alt="We Wear Where" onClick={() => history.push("/")} />
                         </div>
-                        {/* Hamburger Icon for touch devices */}
                         <a
                             onClick={() => {
                                 setisActive(!isActive)

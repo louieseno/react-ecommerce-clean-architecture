@@ -19,7 +19,7 @@ const Footer = () => {
                     </div>
                     <div className="column">
                         <p>Help</p>
-                        <a href="">FAQ</a>
+                        <a href="/faq">FAQ</a>
                         <a href="/contact">Contact us</a>
                         <a href="">Return Policy</a>
                     </div>
