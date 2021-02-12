@@ -6,7 +6,7 @@ const { infoText, infoHeader, infoImage } = styles
 
 const information = (title, paragraph) => {
     return (
-        <div className="column is-half is-flex">
+        <div className="column is-half is-flex hero-body">
             <div className={`has-text-centered ${infoText}`}>
                 <p className={infoHeader}>{title}</p>
                 <p>{paragraph}</p>

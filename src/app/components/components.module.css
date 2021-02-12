@@ -39,7 +39,7 @@ span {
 }
 
 .navbarWrapper {
-    composes: primaryColor from "/src/styles/master.css";
+    background-color: #0ed6a0;
     height: 4rem;
 }
 

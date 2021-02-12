@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 const InformationPage = lazy(() => import("./app/pages/details/Information"))
+const ContactPage = lazy(() => import("./app/pages/details/Contact"))
 const LoginPage = lazy(() => import("./app/pages/authentication/Login"))
 const RegisterPage = lazy(() => import("./app/pages/authentication/Register"))
 const MainPage = lazy(() => import("./app/pages/product-catalog/Index"))
@@ -17,6 +18,7 @@ const RouterManager = () => {
                     <Route exact path="/auth/v1/login" component={LoginPage} />
                     <Route exact path="/auth/v1/register" component={RegisterPage} />
                     <Route exact path="/information" component={InformationPage} />
+                    <Route exact path="/contact" component={ContactPage} />
                 </Switch>
             </Suspense>
         </Router>
