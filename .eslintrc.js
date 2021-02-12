@@ -16,13 +16,14 @@ module.exports = {
     rules: {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-var-requires": "off",
     },
     overrides: [
         {
             files: ["*.ts", "*.tsx"],
             rules: {
-                "@typescript-eslint/explicit-function-return-type": ["on"],
-                "@typescript-eslint/explicit-module-boundary-types": ["on"],
+                "@typescript-eslint/explicit-function-return-type": ["off"],
+                "@typescript-eslint/explicit-module-boundary-types": ["error"],
             },
         },
     ],
