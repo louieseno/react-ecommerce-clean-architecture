@@ -1,6 +1,6 @@
 # React E-Commerce - (Using Uncle Bob's Clean Architecture)
 
-An E-Commerce website for thrift store.
+An E-Commerce website for a local thrift store.
 
 ## Tools
   1. React: To create the Single Page App
