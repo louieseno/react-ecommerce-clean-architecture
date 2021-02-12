@@ -1,0 +1,10 @@
+.primaryColor {
+    color: #0ed6a0;
+}
+
+.infoText {
+    color: whitesmoke;
+    text-align: center;
+    margin: 0 10rem;
+    background: rgba(0, 0, 0, 0.6);
+}

@@ -39,8 +39,8 @@ span {
 }
 
 .navbarWrapper {
+    composes: primaryColor from "/src/styles/master.css";
     height: 4rem;
-    background-color: #06d6a0;
 }
 
 /* Icon Button */
@@ -69,7 +69,6 @@ span {
     border-radius: 50%;
     perspective: 800px;
 }
-
 .inner {
     position: absolute;
     box-sizing: border-box;
@@ -78,28 +77,24 @@ span {
     border-radius: 50%;
     border: 3px solid transparent;
 }
-
 .inner.one {
     left: 0;
     top: 0;
     animation: rotate-one 1s linear infinite;
     border-bottom: 3px solid #f0803c;
 }
-
 .inner.two {
     right: 0;
     top: 0;
     animation: rotate-two 1s linear infinite;
     border-right: 3px solid #0e9594;
 }
-
 .inner.three {
     right: 0;
     bottom: 0;
     animation: rotate-three 1s linear infinite;
     border-top: 3px solid #06d6a0;
 }
-
 @keyframes rotate-one {
     0% {
         transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
@@ -108,7 +103,6 @@ span {
         transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
     }
 }
-
 @keyframes rotate-two {
     0% {
         transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
@@ -117,7 +111,6 @@ span {
         transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
     }
 }
-
 @keyframes rotate-three {
     0% {
         transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);

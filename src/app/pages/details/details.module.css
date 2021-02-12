@@ -1,15 +1,12 @@
 .infoText {
-    color: whitesmoke;
-    text-align: center;
+    composes: infoText from "/src/styles/master.css";
     line-height: 3rem;
     font-size: 30px;
     padding: 2rem;
-    margin: 0 10rem;
-    background: rgba(0, 0, 0, 0.6);
 }
 
 .infoHeader {
-    color: #0ed6a0;
+    composes: primaryColor from "/src/styles/master.css";
 }
 
 .infoImage {
