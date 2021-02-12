@@ -1,18 +1,19 @@
-/*Information*/
+.detailHeader {
+    color: #0ed6a0;
+    font-size: 35px;
+}
 
-/*Information*/
-.infoText {
-    composes: infoText from "/src/styles/master.css";
-    line-height: 3rem;
-    font-size: 30px;
-    padding: 2rem;
+.detailWrapper {
     background: rgba(0, 0, 0, 0.6);
 }
 
-.infoHeader {
-    color: #0ed6a0;
+/*Information*/
+.infoText {
+    text-align: center;
+    line-height: 3rem;
+    font-size: 30px;
+    padding: 2rem;
 }
-
 .infoImage {
     background: url("/src/assets/img/about-bg.jpg");
     background-size: cover;
@@ -22,17 +23,13 @@
 @media only screen and (max-width: 425px) {
     .infoText {
         line-height: 2.5rem;
-        font-size: 25px;
         padding: 1.5rem;
-        margin: 0;
     }
 }
 /* Big Laptop */
 @media only screen and (min-width: 1024px) {
     .infoText {
         line-height: 3.5rem;
-        font-size: 30px;
         padding: 2.5rem;
-        margin: 0 10px;
     }
 }

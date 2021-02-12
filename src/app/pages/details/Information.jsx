@@ -2,14 +2,14 @@ import React from "react"
 import Content from "app/components/Content"
 
 import styles from "./details.module.css"
-const { infoText, infoHeader, infoImage } = styles
+const { infoText, infoImage, detailHeader, detailWrapper } = styles
 
 const information = (title, paragraph) => {
     return (
         <div className="column is-half is-flex hero-body">
-            <div className={`has-text-centered ${infoText}`}>
-                <p className={infoHeader}>{title}</p>
-                <p>{paragraph}</p>
+            <div className={`has-text-centered ${detailWrapper}`}>
+                <p className={detailHeader}>{title}</p>
+                <p className={infoText}>{paragraph}</p>
             </div>
         </div>
     )
