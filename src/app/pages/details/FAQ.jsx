@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Content from "app/components/Content"
 import styles from "./details.module.css"
-const { detailHeader, infoImage } = styles
+const { infoImage } = styles
 
 function FAQContent() {
     let dropdownStates = { order1: false, order2: false }
@@ -44,9 +44,36 @@ function FAQContent() {
 
     return (
         <div className={`columns is-centered hero-body ${infoImage}`}>
-            <div className={`column is-two-fifths has-text-centered `}>
-                <p className={detailHeader}>{"FAQ"}</p>
+            <div className={`column`}>
                 Order Status and / or Change
+                {questionDropdown(
+                    "How do I check the status of my order?",
+                    "You can also check the status of your order by logging into your We Wear Where account and reviewing your order history section by clicking ‘Account’ > ‘View my orders’. If you do not have a We Wear Where account or you are not logged on, please log into your We Wear Where membership account.",
+                    "order1",
+                )}
+                {questionDropdown(
+                    "How can I check my order history?",
+                    "You can check the order history by logging into your We Wear Where account and reviewing the order history section by clicking ‘Account’ > ‘View my orders’. If you do not see your order history in your account, please get in touch with our friendly Customer Support Team using any available channels below.",
+                    "order2",
+                )}
+            </div>
+
+            <div className={`column`}>
+                Order Cancellation
+                {questionDropdown(
+                    "How do I check the status of my order?",
+                    "You can also check the status of your order by logging into your We Wear Where account and reviewing your order history section by clicking ‘Account’ > ‘View my orders’. If you do not have a We Wear Where account or you are not logged on, please log into your We Wear Where membership account.",
+                    "order1",
+                )}
+                {questionDropdown(
+                    "How can I check my order history?",
+                    "You can check the order history by logging into your We Wear Where account and reviewing the order history section by clicking ‘Account’ > ‘View my orders’. If you do not see your order history in your account, please get in touch with our friendly Customer Support Team using any available channels below.",
+                    "order2",
+                )}
+            </div>
+
+            <div className={`column is-half`}>
+                Payment
                 {questionDropdown(
                     "How do I check the status of my order?",
                     "You can also check the status of your order by logging into your We Wear Where account and reviewing your order history section by clicking ‘Account’ > ‘View my orders’. If you do not have a We Wear Where account or you are not logged on, please log into your We Wear Where membership account.",
