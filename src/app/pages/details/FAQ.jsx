@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Content from "app/components/Content"
 import { fetchFAQ } from "app/redux/faq/faq.actions"
@@ -7,10 +7,12 @@ const { infoImage, detailSubHeader, detailWrapper, faqLinkBlock } = styles
 
 function FAQContent() {
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(fetchFAQ())
     }, [dispatch])
+
+    const data = useSelector((state) => state.faq.data)
+    const loading = useSelector((state) => state.faq.loading)
 
     return (
         <div className={`columns is-multiline  hero-body ${infoImage}`}>

@@ -5,7 +5,7 @@ import {
 } from "./faq.types"
 
 const initalState = {
-    faq: [],
+    data: [],
     loading: false,
 }
 
@@ -15,7 +15,7 @@ export default function (state = initalState, action = null) {
             return { ...state, loading: true }
         }
         case FETCH_SUCCESS: {
-            return { ...state, loading: false, faq: action.payload }
+            return { ...state, loading: false, data: action.payload }
         }
         case FETCH_FAILURE: {
             return { ...state, loading: false }
