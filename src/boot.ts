@@ -9,13 +9,13 @@ import thunk from "redux-thunk"
 let _firebaseConfig = {}
 
 _firebaseConfig = {
-    apiKey: "AIzaSyDEdjMOGocpFDli39y05eqst-5uEzJ341U",
-    authDomain: "react-ecommerce-77a38.firebaseapp.com",
-    projectId: "react-ecommerce-77a38",
-    storageBucket: "react-ecommerce-77a38.appspot.com",
-    messagingSenderId: "655233356192",
-    appId: "1:655233356192:web:e1e18288f698ce0e5314c5",
-    measurementId: "G-BHWECF1JF0",
+    apiKey: "AIzaSyDdjV7xYh_-U3rssXg1bYjyn3yB5viMmkU",
+    authDomain: "we-wear-where.firebaseapp.com",
+    projectId: "we-wear-where",
+    storageBucket: "we-wear-where.appspot.com",
+    messagingSenderId: "640068816961",
+    appId: "1:640068816961:web:6310dcc7bb8b808f9c76c0",
+    measurementId: "G-YWZMB3966X",
 }
 
 firebase.initializeApp(_firebaseConfig)

@@ -1,11 +1,27 @@
 .detailHeader {
     color: #0ed6a0;
     font-size: 35px;
+    text-align: center;
+}
+
+.detailSubHeader {
+    color: #0ed6a0;
+    font-size: 20px;
+    text-align: center;
 }
 
 .detailWrapper {
     background: rgba(0, 0, 0, 0.6);
     padding: 2rem;
+}
+/*FAQ*/
+.faqLinkBlock > ul {
+    list-style-type: circle;
+}
+
+.faqLinkBlock > ul > li > a {
+    color: whitesmoke;
+    text-align: left;
 }
 
 /*Information*/
