@@ -5,6 +5,7 @@ import "firebase/database" // for realtime database
 import firebase from "firebase/app"
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import thunk from "redux-thunk"
+import faq from "app/redux/faq/faq.reducers"
 
 let _firebaseConfig = {}
 
@@ -20,4 +21,4 @@ _firebaseConfig = {
 
 firebase.initializeApp(_firebaseConfig)
 
-export const store = createStore(combineReducers({}), applyMiddleware(thunk))
+export const store = createStore(combineReducers({ faq }), applyMiddleware(thunk))

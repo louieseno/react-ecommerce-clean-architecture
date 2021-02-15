@@ -1,10 +1,17 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import Content from "app/components/Content"
-
+import { fetchFAQ } from "app/redux/faq/faq.actions"
 import styles from "./details.module.css"
 const { infoImage, detailSubHeader, detailWrapper, faqLinkBlock } = styles
 
 function FAQContent() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchFAQ())
+    }, [dispatch])
+
     return (
         <div className={`columns is-multiline  hero-body ${infoImage}`}>
             <div className={`column ${detailWrapper} ${faqLinkBlock}`}>
@@ -31,10 +38,6 @@ function FAQContent() {
                     </li>
                 </ul>
             </div>
-
-            <div className={`column`}>Order Cancellation</div>
-
-            <div className={`column is-half`}>Payment</div>
         </div>
     )
 }
