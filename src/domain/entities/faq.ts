@@ -6,7 +6,7 @@ export class FAQ {
     }
 
     static fromJSON(data: any): FAQ {
-        return new FAQ(data.key, data.Answers, data.Questions)
+        return new FAQ(data.key, data.Answers || {}, data.Questions || {})
     }
 
     public key: string

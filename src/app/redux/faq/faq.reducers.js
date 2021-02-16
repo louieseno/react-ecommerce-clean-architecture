@@ -6,7 +6,7 @@ import {
 
 const initalState = {
     data: [],
-    loading: false,
+    loading: true,
 }
 
 export default function (state = initalState, action = null) {

@@ -55,11 +55,10 @@ span {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #2a2a2f;
 }
 .spinner {
     --size: 62px;

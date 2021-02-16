@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React, { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Content from "app/components/Content"
 import { fetchFAQ } from "app/redux/faq/faq.actions"
 import styles from "./details.module.css"
 const { infoImage, detailSubHeader, detailWrapper, faqLinkBlock } = styles
 
+import Loader from "app/components/Loader"
 function FAQContent() {
     const dispatch = useDispatch()
     useEffect(() => {
@@ -14,33 +15,33 @@ function FAQContent() {
     const data = useSelector((state) => state.faq.data)
     const loading = useSelector((state) => state.faq.loading)
 
-    return (
-        <div className={`columns is-multiline  hero-body ${infoImage}`}>
-            <div className={`column ${detailWrapper} ${faqLinkBlock}`}>
-                <p className={detailSubHeader}> Order Status and / or Change</p>
+    const categoryBlock = (category) => {
+        return (
+            <div key={category.key} className={`column ${detailWrapper} ${faqLinkBlock}`}>
+                <p className={detailSubHeader}>{category?.key}</p>
                 <ul>
-                    <li>
-                        <a href="">{"How do I check the status of my order?"}</a>
-                    </li>
-                    <li>
-                        <a href="">{"How can I check my order history?"}</a>
-                    </li>
-                    <li>
-                        <a href="">{"Can I change my payment method once I placed my order?"}</a>
-                    </li>
-                    <li>
-                        <a href="">
-                            {
-                                "What happens if I notice that my personal details are incorrect after I have placed my order?"
-                            }
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">{"Can I still change my order once it has been confirmed?"}</a>
-                    </li>
+                    {Object.keys(category.questions).map(function (key) {
+                        return (
+                            <li key={key}>
+                                <a href="">{category.questions[key]}</a>
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
-        </div>
+        )
+    }
+    return (
+        <Fragment>
+            {loading && <Loader />}{" "}
+            {!loading && (
+                <div className={`columns is-multiline  hero-body ${infoImage}`}>
+                    {data.map((faqCategory) => {
+                        return categoryBlock(faqCategory)
+                    })}
+                </div>
+            )}
+        </Fragment>
     )
 }
 const FAQ = () => {
