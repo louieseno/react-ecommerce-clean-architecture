@@ -15,4 +15,4 @@ https://we-wear-where.herokuapp.com/
 ## How to Use
 To use the project follow the steps given below:
   1. Install the necessary modules (npm install)
-  2. Use npm dev to run the react dev app
+  2. Use npm start to run the react app
