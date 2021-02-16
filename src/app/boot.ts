@@ -6,7 +6,7 @@ import firebase from "firebase/app"
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import thunk from "redux-thunk"
 import faq from "app/redux/faq/faq.reducers"
-import firebaseConfig from "firebase.config"
+import firebaseConfig from "app/FirebaseConfig"
 
 firebase.initializeApp(firebaseConfig)
 

@@ -2,7 +2,7 @@ import React from "react"
 import { Provider } from "react-redux"
 import "./styles/App.sass"
 import "./styles/App.css"
-import { store } from "./boot"
+import { store } from "./app/boot"
 import RouterManager from "../src/RouteManager"
 
 const App = () => (
