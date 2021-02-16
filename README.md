@@ -7,6 +7,7 @@ An E-Commerce website for a local thrift store.
   2. React-Router: For Routing
   3. Redux: For State Management
   4. Firebase: As a DataBase
+  5. Bulma: Css Framework
   
 ## Live Demo 
 https://we-wear-where.herokuapp.com/
