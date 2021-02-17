@@ -1,9 +1,9 @@
 module.exports = {
-    apiKey: ENV["API_KEY"],
-    authDomain: ENV["AUTH_DOMAIN"],
-    projectId: ENV["PROJECT_ID"],
-    storageBucket: ENV["STORAGE_BUCKET"],
-    messagingSenderId: ENV["MESSAGING_SENDER_ID"],
-    appId: ENV["APP_ID"],
-    measurementId: ENV["MEASUREMENT_ID"],
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID,
 }
