@@ -5,5 +5,5 @@ module.exports = {
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId,
     appId: process.env.appId,
-    measurementId: process.env.measurementIdq,
+    measurementId: process.env.measurementId,
 }
