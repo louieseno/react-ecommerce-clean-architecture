@@ -9,8 +9,6 @@ An E-Commerce website for a local thrift store.
   4. Firebase: As a DataBase
   5. Bulma: Css Framework
   
-## Live Demo 
-https://we-wear-where.herokuapp.com/
 
 ## How to Use
 To use the project follow the steps given below:
