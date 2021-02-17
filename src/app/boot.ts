@@ -10,10 +10,8 @@ let firebaseConfig = {}
 if (process.env.NODE_ENV === "production") {
     firebaseConfig = require("app/config/production")
 } else {
-    console.log("dev")
     firebaseConfig = require("app/config/development")
 }
-console.log(firebaseConfig)
 firebase.initializeApp(firebaseConfig)
 
 export const store = createStore(combineReducers({ faq }), applyMiddleware(thunk))
