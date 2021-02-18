@@ -16,7 +16,6 @@ export function fetchFAQ() {
             const data = await usecase.execute()
             dispatch({ type: FETCH_SUCCESS, payload: data })
         } catch (err) {
-            //console.error(err)
             dispatch({ type: FETCH_FAILURE })
         }
     }
