@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { useLocation } from "react-router-dom"
 import Content from "app/components/Content"
 import styles from "./details.module.css"
@@ -9,20 +9,18 @@ function FAQDetailsContent() {
     const answer = location.state.answer
     const category = location.state.category
     return (
-        <Fragment>
-            <div className={`${infoImage}  hero-body`}>
-                <div className={faqNavigatorBlock}>
-                    <a href="/faq">{`${category} > `}</a>
-                    <a href="">{question}</a>
-                </div>
-                <div className="columns is-centered">
-                    <div className={`column is-half has-text-centered ${detailWrapper}`}>
-                        <p className={detailSubHeader}>{question}</p>
-                        <p>{answer}</p>
-                    </div>
+        <div className={`${infoImage}  hero-body`}>
+            <div className={faqNavigatorBlock}>
+                <a href="/faq">{`${category} > `}</a>
+                <a href="">{question}</a>
+            </div>
+            <div className="columns is-centered">
+                <div className={`column is-half has-text-centered ${detailWrapper}`}>
+                    <p className={detailSubHeader}>{question}</p>
+                    <p>{answer}</p>
                 </div>
             </div>
-        </Fragment>
+        </div>
     )
 }
 const FAQDetails = () => {

@@ -15,7 +15,8 @@
 }
 
 /*FAQ*/
-.faqLinkBlock > div > ul {
+.faqLinkBlock > div > ul,
+.policyLinkBlock > ul {
     list-style-type: circle;
 }
 
@@ -23,6 +24,10 @@
     cursor: pointer;
     color: whitesmoke;
     text-align: left;
+    margin-bottom: 15px;
+}
+.policyLinkBlock > ul > li {
+    margin-bottom: 15px;
 }
 .faqNavigatorBlock {
     margin-bottom: 20px;

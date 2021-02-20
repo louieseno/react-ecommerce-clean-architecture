@@ -5,6 +5,7 @@ const InformationPage = lazy(() => import("./app/pages/details/Information"))
 const ContactPage = lazy(() => import("./app/pages/details/Contact"))
 const FAQPage = lazy(() => import("./app/pages/details/FAQ"))
 const FAQDetails = lazy(() => import("./app/pages/details/FAQDetails"))
+const ReturnPolicy = lazy(() => import("./app/pages/details/ReturnPolicy"))
 const LoginPage = lazy(() => import("./app/pages/authentication/Login"))
 const RegisterPage = lazy(() => import("./app/pages/authentication/Register"))
 const MainPage = lazy(() => import("./app/pages/product-catalog/Index"))
@@ -23,6 +24,7 @@ const RouterManager = () => {
                     <Route exact path="/contact" component={ContactPage} />
                     <Route exact path="/faq" component={FAQPage} />
                     <Route exact path="/faq/details" component={FAQDetails} />
+                    <Route exact path="/return-policy" component={ReturnPolicy} />
                 </Switch>
             </Suspense>
         </Router>

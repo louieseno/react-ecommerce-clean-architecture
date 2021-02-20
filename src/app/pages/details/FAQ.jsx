@@ -2,11 +2,11 @@ import React, { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import Content from "app/components/Content"
+import Loader from "app/components/Loader"
 import { fetchFAQ } from "app/redux/faq/faq.actions"
 import styles from "./details.module.css"
 const { infoImage, detailSubHeader, detailsWrapper, faqLinkBlock } = styles
 
-import Loader from "app/components/Loader"
 function FAQContent() {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -16,6 +16,7 @@ function FAQContent() {
 
     const data = useSelector((state) => state.faq.data)
     const loading = useSelector((state) => state.faq.loading)
+
     function _navigateLink(category, key) {
         history.push("/faq/details", {
             category: category.key,
