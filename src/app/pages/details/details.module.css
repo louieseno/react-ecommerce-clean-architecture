@@ -19,7 +19,8 @@
     list-style-type: circle;
 }
 
-.faqLinkBlock > ul > li > a {
+.faqLinkBlock > ul > li {
+    cursor: pointer;
     color: whitesmoke;
     text-align: left;
 }
