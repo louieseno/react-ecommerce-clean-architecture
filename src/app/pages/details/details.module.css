@@ -24,6 +24,12 @@
     color: whitesmoke;
     text-align: left;
 }
+.faqNavigatorBlock {
+    margin-bottom: 20px;
+}
+.faqNavigatorBlock > a {
+    color: whitesmoke;
+}
 
 /*Information*/
 .infoText {
