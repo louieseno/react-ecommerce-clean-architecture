@@ -21,7 +21,6 @@ const Footer = () => {
                         <p>Help</p>
                         <a href="/faq">FAQ</a>
                         <a href="/contact">Contact us</a>
-                        <a href="">Return Policy</a>
                     </div>
                     <div className="column">
                         <p>E-Newsletter</p>
