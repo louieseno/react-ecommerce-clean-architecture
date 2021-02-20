@@ -6,20 +6,20 @@
 
 .detailSubHeader {
     color: #0ed6a0;
-    font-size: 20px;
-    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
 }
 
 .detailWrapper {
-    background: rgba(0, 0, 0, 0.6);
     padding: 2rem;
 }
+
 /*FAQ*/
-.faqLinkBlock > ul {
+.faqLinkBlock > div > ul {
     list-style-type: circle;
 }
 
-.faqLinkBlock > ul > li {
+.faqLinkBlock > div > ul > li {
     cursor: pointer;
     color: whitesmoke;
     text-align: left;
@@ -27,12 +27,10 @@
 
 /*Information*/
 .infoText {
-    text-align: center;
-    line-height: 3rem;
-    font-size: 30px;
+    font-size: 20px;
 }
 .infoImage {
-    background: url("/src/assets/img/about-bg.jpg");
+    background: url("/src/assets/img/dress.jpg") no-repeat;
     background-size: cover;
     color: whitesmoke;
 }
@@ -40,11 +38,5 @@
 @media only screen and (max-width: 425px) {
     .infoText {
         line-height: 2.5rem;
-    }
-}
-/* Big Laptop */
-@media only screen and (min-width: 1024px) {
-    .infoText {
-        line-height: 3.5rem;
     }
 }

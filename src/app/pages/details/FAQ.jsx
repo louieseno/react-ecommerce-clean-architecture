@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 import Content from "app/components/Content"
 import { fetchFAQ } from "app/redux/faq/faq.actions"
 import styles from "./details.module.css"
-const { infoImage, detailSubHeader, detailWrapper, faqLinkBlock } = styles
+const { infoImage, detailSubHeader, detailsWrapper, faqLinkBlock } = styles
 
 import Loader from "app/components/Loader"
 function FAQContent() {
@@ -25,17 +25,19 @@ function FAQContent() {
     }
     const categoryBlock = (category) => {
         return (
-            <div key={category.key} className={`column ${detailWrapper} ${faqLinkBlock}`}>
-                <p className={detailSubHeader}>{category?.key}</p>
-                <ul>
-                    {Object.keys(category.questions).map(function (key) {
-                        return (
-                            <li key={key} onClick={() => _navigateLink(category, key)}>
-                                {category.questions[key]}
-                            </li>
-                        )
-                    })}
-                </ul>
+            <div key={category.key} className={`column ${faqLinkBlock}`}>
+                <div className={detailsWrapper}>
+                    <p className={detailSubHeader}>{category?.key}</p>
+                    <ul>
+                        {Object.keys(category.questions).map(function (key) {
+                            return (
+                                <li key={key} onClick={() => _navigateLink(category, key)}>
+                                    {category.questions[key]}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
         )
     }
@@ -43,7 +45,7 @@ function FAQContent() {
         <Fragment>
             {loading && <Loader />}{" "}
             {!loading && (
-                <div className={`columns is-multiline  hero-body ${infoImage}`}>
+                <div className={`columns is-centered hero-body ${infoImage}`}>
                     {data.map((faqCategory) => {
                         return categoryBlock(faqCategory)
                     })}
