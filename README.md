@@ -8,7 +8,8 @@ An E-Commerce website for a local thrift store.
   3. Redux: For State Management
   4. Firebase: As a DataBase
   5. Bulma: Css Framework
-  
+## Live demo
+https://we-wear-where.herokuapp.com/
 
 ## How to Use
 To use the project follow the steps given below:
