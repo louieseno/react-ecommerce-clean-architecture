@@ -5,7 +5,7 @@ An E-Commerce website for a local thrift store.
 ## Tools
   1. React: To create the Single Page App
   2. React-Router: For Routing
-  3. Redux: For State Management
+  3. Redux w/ Redux-toolkit: For State Management
   4. Firebase: As a DataBase
   5. Bulma: Css Framework
 ## Live demo
