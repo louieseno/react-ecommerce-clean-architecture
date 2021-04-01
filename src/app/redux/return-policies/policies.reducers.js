@@ -5,8 +5,8 @@ const initalState = {
     loading: true,
 }
 
-const faqSlice = createSlice({
-    name: "faq",
+const policiesSlice = createSlice({
+    name: "policies",
     initialState: initalState,
     reducers: {
         fetchRequest: (state) => {
@@ -22,5 +22,5 @@ const faqSlice = createSlice({
     },
 })
 
-export const { fetchFailure, fetchRequest, fetchSuccess } = faqSlice.actions
-export default faqSlice.reducer
+export const { fetchRequest, fetchSuccess, fetchFailure } = policiesSlice.actions
+export default policiesSlice.reducer

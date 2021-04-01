@@ -1,27 +1,26 @@
-import {
-    FETCH_JACKETS_FAILURE as FETCH_FAILURE,
-    FETCH_JACKETS_REQUEST as FETCH_REQUEST,
-    FETCH_JACKETS_SUCCESS as FETCH_SUCCESS,
-} from "./jackets.types"
+import { createSlice } from "@reduxjs/toolkit"
 
 const initalState = {
     data: [],
     loading: true,
 }
 
-export default function (state = initalState, action = null) {
-    switch (action.type) {
-        case FETCH_REQUEST: {
-            return { ...state, loading: true }
-        }
-        case FETCH_SUCCESS: {
-            return { ...state, loading: false, data: action.payload }
-        }
-        case FETCH_FAILURE: {
-            return { ...state, loading: false }
-        }
-        default: {
-            return state
-        }
-    }
-}
+const jacketsSlice = createSlice({
+    name: "jackets",
+    initialState: initalState,
+    reducers: {
+        fetchRequest: (state) => {
+            state.loading = true
+        },
+        fetchSuccess: (state, action) => {
+            state.data = action.payload
+            state.loading = false
+        },
+        fetchFailure: (state) => {
+            state.loading = false
+        },
+    },
+})
+
+export const { fetchRequest, fetchSuccess, fetchFailure } = jacketsSlice.actions
+export default jacketsSlice.reducer

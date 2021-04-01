@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchReturnPolicy } from "app/redux/return-policy/policy.actions"
+import { fetchReturnPolicy } from "app/redux/return-policies/policies.actions"
 import Content from "app/components/Content"
 import Loader from "app/components/Loader"
 import styles from "./details.module.css"
@@ -25,8 +25,8 @@ const ReturnPolicy = () => {
         dispatch(fetchReturnPolicy())
     }, [dispatch])
 
-    const data = useSelector((state) => state.policy.data)
-    const loading = useSelector((state) => state.policy.loading)
+    const data = useSelector((state) => state.policies.data)
+    const loading = useSelector((state) => state.policies.loading)
 
     return (
         <Content>
