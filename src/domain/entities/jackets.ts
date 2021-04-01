@@ -1,15 +1,24 @@
 export class Jackets {
-    constructor(key: string, category: string, name: string, size: string, type: string, filePath: string) {
+    constructor(
+        key: string,
+        category: string,
+        name: string,
+        size: string,
+        type: string,
+        filePath: string,
+        price: number,
+    ) {
         this.key = key
         this.category = category
         this.name = name
         this.size = size
         this.type = type
         this.filePath = filePath
+        this.price = price
     }
 
     static fromJSON(data: any): Jackets {
-        return new Jackets(data.key, data.category, data.name, data.size, data.type, data.filePath)
+        return new Jackets(data.key, data.category, data.name, data.size, data.type, data.filePath, data.price)
     }
 
     public key: string
@@ -18,6 +27,7 @@ export class Jackets {
     public size: string
     public type: string
     public filePath: string
+    public price: number
     public imageUrl = ""
 
     setImageUrl(url: string) {
@@ -32,6 +42,7 @@ export class Jackets {
             size: this.size,
             type: this.type,
             filePath: this.filePath,
+            price: this.price,
         }
     }
 }
