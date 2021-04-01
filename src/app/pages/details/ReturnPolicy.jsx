@@ -6,7 +6,20 @@ import Loader from "app/components/Loader"
 import styles from "./details.module.css"
 const { detailHeader, detailWrapper, infoImage, policyLinkBlock } = styles
 
-function ReturnPolicyContent() {
+function _policyBlock(policy) {
+    const policyObject = policy?.policy
+    return (
+        <div key={policy.key} className={policyLinkBlock}>
+            <p className={detailHeader}>{policy.key}</p>
+            <ul>
+                {policyObject.map((obj) => {
+                    return <li key={obj?.key}>{obj?.policy}</li>
+                })}
+            </ul>
+        </div>
+    )
+}
+const ReturnPolicy = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchReturnPolicy())
@@ -14,37 +27,22 @@ function ReturnPolicyContent() {
 
     const data = useSelector((state) => state.policy.data)
     const loading = useSelector((state) => state.policy.loading)
-    const policyBlock = (policy) => {
-        const policyObject = policy?.policy
-        return (
-            <div key={policy.key} className={policyLinkBlock}>
-                <p className={detailHeader}>{policy.key}</p>
-                <ul>
-                    {policyObject.map((obj) => {
-                        return <li key={obj?.key}>{obj?.policy}</li>
-                    })}
-                </ul>
-            </div>
-        )
-    }
-    return (
-        <Fragment>
-            {loading && <Loader />}{" "}
-            {!loading && (
-                <div className={`columns is-centered hero-body ${infoImage}`}>
-                    <div className={`column is-two-fifths ${detailWrapper}`}>
-                        {data.map((policy) => {
-                            return policyBlock(policy)
-                        })}
-                    </div>
-                </div>
-            )}
-        </Fragment>
-    )
-}
-const ReturnPolicy = () => {
-    var ContentDetails = Content(ReturnPolicyContent, true, true)
 
-    return <>{ContentDetails}</>
+    return (
+        <Content>
+            <Fragment>
+                {loading && <Loader />}{" "}
+                {!loading && (
+                    <div className={`columns is-centered hero-body ${infoImage}`}>
+                        <div className={`column is-two-fifths ${detailWrapper}`}>
+                            {data.map((policy) => {
+                                return _policyBlock(policy)
+                            })}
+                        </div>
+                    </div>
+                )}
+            </Fragment>
+        </Content>
+    )
 }
 export default ReturnPolicy
