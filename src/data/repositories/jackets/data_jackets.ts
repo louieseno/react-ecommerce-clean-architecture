@@ -4,11 +4,16 @@ import { Jackets as Entity } from "domain/entities/jackets"
 import { JacketsRepository as Repository } from "domain/repositories/jackets_repository"
 import { loadImages } from "utils/fetch_image"
 
+function _mapSnapshotToEntity(doc: any) {
+    const data = doc.data()
+    const entity = Entity.fromJSON({ key: doc.id, ...data })
+    return entity
+}
+
 function _mapSnapshotToEntities(snapshot: any) {
     const entities: Entity[] = []
     snapshot.forEach(function (doc: any) {
-        const data = doc.data()
-        entities.push(Entity.fromJSON({ key: doc.id, ...data }))
+        entities.push(_mapSnapshotToEntity(doc))
     })
     return entities
 }
@@ -25,7 +30,19 @@ export class DataJacketsRepository implements Repository {
             }
             return jackets
         } catch (e) {
-            console.log(e)
+            throw e
+        }
+    }
+
+    async getJacket(productId: string): Promise<Entity> {
+        try {
+            const db = firebase.firestore()
+            const document = await db.collection("jacketsCollection").doc(productId).get()
+            const jacket = _mapSnapshotToEntity(document)
+            const url = await loadImages("Jackets", jacket.filePath)
+            jacket.setImageUrl(url)
+            return jacket
+        } catch (e) {
             throw e
         }
     }

@@ -1,5 +1,6 @@
 export const sizeMapper = {
+    S: "Small",
     M: "Medium",
     L: "Large",
-    S: "Small",
+    XL: "Extra Large",
 }

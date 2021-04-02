@@ -1,18 +1,32 @@
 import { DataJacketsRepository as DataRepository } from "data/repositories/jackets/data_jackets"
-import { FetchJacketsUseCase as FetchUseCase } from "domain/usecases/jackets/fetch_jackets"
-import { fetchRequest, fetchSuccess, fetchFailure } from "./jackets.reducers"
+import { FetchJacketsUseCase as FetchJackets } from "domain/usecases/jackets/fetch_jackets"
+import { FetchJacketUseCase as FetchJacket } from "domain/usecases/jackets/fetch_jacket"
+import { fetching, fetchJacketsSuccess, fetchJacketSuccess, fetchingFailed } from "./jackets.reducers"
 
 const _repository = new DataRepository()
 
 export function fetchJackets() {
     return async function (dispatch) {
-        dispatch(fetchRequest())
+        dispatch(fetching())
         try {
-            const usecase = new FetchUseCase(_repository)
+            const usecase = new FetchJackets(_repository)
             const data = await usecase.execute()
-            dispatch(fetchSuccess(data))
+            dispatch(fetchJacketsSuccess(data))
         } catch (err) {
-            dispatch(fetchFailure())
+            dispatch(fetchingFailed())
+        }
+    }
+}
+
+export function fetchJacket(productId) {
+    return async function (dispatch) {
+        dispatch(fetching())
+        try {
+            const usecase = new FetchJacket(_repository)
+            const data = await usecase.execute(productId)
+            dispatch(fetchJacketSuccess(data))
+        } catch (err) {
+            dispatch(fetchingFailed())
         }
     }
 }

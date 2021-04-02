@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initalState = {
-    data: [],
+    jackets: [],
+    jacket: null,
     loading: true,
 }
 
@@ -9,18 +10,22 @@ const jacketsSlice = createSlice({
     name: "jackets",
     initialState: initalState,
     reducers: {
-        fetchRequest: (state) => {
+        fetching: (state) => {
             state.loading = true
         },
-        fetchSuccess: (state, action) => {
-            state.data = action.payload
+        fetchingFailed: (state) => {
             state.loading = false
         },
-        fetchFailure: (state) => {
+        fetchJacketsSuccess: (state, action) => {
+            state.jackets = action.payload
+            state.loading = false
+        },
+        fetchJacketSuccess: (state, action) => {
+            state.jacket = action.payload
             state.loading = false
         },
     },
 })
 
-export const { fetchRequest, fetchSuccess, fetchFailure } = jacketsSlice.actions
+export const { fetching, fetchingFailed, fetchJacketsSuccess, fetchJacketSuccess } = jacketsSlice.actions
 export default jacketsSlice.reducer

@@ -1,5 +1,5 @@
 // Package
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { fetchJackets } from "app/redux/jackets/jackets.actions"
@@ -23,12 +23,12 @@ function _productCard(product, onNavigate) {
         >
             <div className="card-image">
                 <figure className="image">
-                    <img src={product.imageUrl} alt="jacket.name" className={imageCard} />
+                    <img src={product.imageUrl} alt={product.name} className={imageCard} />
                 </figure>
             </div>
             <div className="card-content">
                 <p>
-                    {upperFirstLetter(product.type)}: {sizeMapper[upperLetters(product.size)]}
+                    {upperFirstLetter(product.type)}: {sizeMapper[product.size]}
                 </p>
                 <div style={{ fontWeight: "bold", fontSize: "18" }} className="content">
                     {upperLetters(product.name)}
@@ -42,11 +42,12 @@ function _productCard(product, onNavigate) {
 function ProductCatalog() {
     const dispatch = useDispatch()
     const history = useHistory()
+    const [category, setCategory] = useState("jackets")
     useEffect(() => {
         dispatch(fetchJackets())
     }, [dispatch])
 
-    const jackets = useSelector((state) => state.jackets.data)
+    const jackets = useSelector((state) => state.jackets.jackets)
     const loadingJacket = useSelector((state) => state.jackets.loading)
 
     function onNavigate(product) {
@@ -59,14 +60,10 @@ function ProductCatalog() {
                     <p className="menu-label is-hidden-touch">Categories</p>
                     <ul className="menu-list">
                         <li>
-                            <a href="#" className="">
-                                Jackets
-                            </a>
+                            <a href="#">Jackets</a>
                         </li>
                         <li>
-                            <a href="#" className="">
-                                Dress
-                            </a>
+                            <a href="#">Dress</a>
                         </li>
                     </ul>
                 </aside>
