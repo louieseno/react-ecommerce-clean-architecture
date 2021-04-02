@@ -8,7 +8,7 @@ import Content from "app/components/Content"
 import Loader from "app/components/Loader"
 // Style
 import styles from "./product.module.css"
-const { productCard, imageCard } = styles
+const { productCard, imageCard, customActive } = styles
 // Utils
 import { formatMoney } from "utils/format_money"
 import { upperFirstLetter, upperLetters } from "utils/string_cases"
@@ -60,10 +60,22 @@ function ProductCatalog() {
                     <p className="menu-label is-hidden-touch">Categories</p>
                     <ul className="menu-list">
                         <li>
-                            <a href="#">Jackets</a>
+                            <a
+                                href="#jackets"
+                                className={`${category === "jackets" ? `${customActive}` : ""}`}
+                                onClick={() => setCategory("jackets")}
+                            >
+                                Jackets
+                            </a>
                         </li>
                         <li>
-                            <a href="#">Dress</a>
+                            <a
+                                href="#dress"
+                                className={`${category === "dress" ? `${customActive}` : ""}`}
+                                onClick={() => setCategory("dress")}
+                            >
+                                Dress
+                            </a>
                         </li>
                     </ul>
                 </aside>
