@@ -9,6 +9,7 @@ const ReturnPolicy = lazy(() => import("./app/pages/details/ReturnPolicy"))
 const LoginPage = lazy(() => import("./app/pages/authentication/Login"))
 const RegisterPage = lazy(() => import("./app/pages/authentication/Register"))
 const ProductsPage = lazy(() => import("./app/pages/product-catalog/Products"))
+const ProductDetail = lazy(() => import("./app/pages/product-catalog/ProductDetail"))
 
 import Loader from "./app/components/Loader"
 
@@ -18,6 +19,8 @@ const RouterManager = () => {
             <Suspense fallback={<Loader />}>
                 <Switch>
                     <Route exact path="/" component={ProductsPage} />
+                    <Route exact path="/products/:id" component={ProductDetail} />
+                    <Route exact path="/details" component={FAQDetails} />
                     <Route exact path="/auth/v1/login" component={LoginPage} />
                     <Route exact path="/auth/v1/register" component={RegisterPage} />
                     <Route exact path="/information" component={InformationPage} />

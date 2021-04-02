@@ -1,7 +1,9 @@
-.imageCard {
-    height: 450 !important;
+.productCard {
+    cursor: pointer;
 }
-/* Mobile */
+.imageCard {
+    padding: 50px !important;
+}
 @media only screen and (max-width: 768px) {
     .imageCard {
         height: auto !important;
@@ -9,10 +11,6 @@
 }
 @media only screen and (min-width: 1024px) {
     .imageCard {
-        height: 350px !important;
+        height: 450px !important;
     }
-}
-
-.product {
-    cursor: pointer;
 }

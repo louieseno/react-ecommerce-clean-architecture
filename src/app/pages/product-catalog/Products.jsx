@@ -1,32 +1,39 @@
+// Package
 import React, { useEffect } from "react"
-import Content from "app/components/Content"
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { fetchJackets } from "app/redux/jackets/jackets.actions"
+// Components
+import Content from "app/components/Content"
 import Loader from "app/components/Loader"
+// Style
 import styles from "./product.module.css"
-const { product, imageCard } = styles
-
+const { productCard, imageCard } = styles
+// Utils
 import { formatMoney } from "utils/format_money"
 import { upperFirstLetter, upperLetters } from "utils/string_cases"
 import { sizeMapper } from "utils/size_mapper"
 
-function _productCard(jacket) {
+function _productCard(product, onNavigate) {
     return (
-        <div className={`${product} card column is-one-third`}>
+        <div
+            key={product.key}
+            className={`${productCard} card column is-one-third`}
+            onClick={() => onNavigate(product)}
+        >
             <div className="card-image">
                 <figure className="image">
-                    <img src={jacket.imageUrl} alt="jacket.name" className={imageCard} />
+                    <img src={product.imageUrl} alt="jacket.name" className={imageCard} />
                 </figure>
             </div>
             <div className="card-content">
                 <p>
-                    {upperFirstLetter(jacket.type)}: {sizeMapper[upperLetters(jacket.size)]}
+                    {upperFirstLetter(product.type)}: {sizeMapper[upperLetters(product.size)]}
                 </p>
-
                 <div style={{ fontWeight: "bold", fontSize: "18" }} className="content">
-                    {upperLetters(jacket.name)}
+                    {upperLetters(product.name)}
                 </div>
-                <div style={{ fontWeight: "bold", color: "red" }}>{formatMoney.format(jacket.price)}</div>
+                <div style={{ fontWeight: "bold", color: "red" }}>{formatMoney.format(product.price)}</div>
             </div>
         </div>
     )
@@ -34,13 +41,17 @@ function _productCard(jacket) {
 
 function ProductCatalog() {
     const dispatch = useDispatch()
+    const history = useHistory()
     useEffect(() => {
         dispatch(fetchJackets())
     }, [dispatch])
 
-    const data = useSelector((state) => state.jackets.data)
+    const jackets = useSelector((state) => state.jackets.data)
     const loadingJacket = useSelector((state) => state.jackets.loading)
 
+    function onNavigate(product) {
+        history.push(`products/${product.key}`)
+    }
     return (
         <Content>
             <section className="main-content columns is-fullheight">
@@ -65,8 +76,8 @@ function ProductCatalog() {
                         {loadingJacket && <Loader />}
                         {!loadingJacket && (
                             <div className="columns is-8 is-multiline">
-                                {data.map((jacket) => {
-                                    return _productCard(jacket)
+                                {jackets.map((jacket) => {
+                                    return _productCard(jacket, onNavigate)
                                 })}
                             </div>
                         )}

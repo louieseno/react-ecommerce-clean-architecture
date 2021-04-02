@@ -3,7 +3,7 @@ import "firebase/storage" // for storage
 import "firebase/database" // for realtime database
 
 import firebase from "firebase/app"
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import faq from "app/redux/faq/faq.reducers"
 import policies from "app/redux/return-policies/policies.reducers"
 import jackets from "app/redux/jackets/jackets.reducers"
@@ -14,7 +14,9 @@ if (process.env.NODE_ENV === "production") {
 } else {
     firebaseConfig = require("app/config/development")
 }
-firebase.initializeApp(firebaseConfig)
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig)
+}
 
 export const store = configureStore({
     reducer: {
@@ -22,4 +24,7 @@ export const store = configureStore({
         jackets,
         policies,
     },
+    middleware: getDefaultMiddleware({
+        serializableCheck: false,
+    }),
 })
