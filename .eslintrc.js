@@ -18,13 +18,18 @@ module.exports = {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "prefer-destructuring": ["error", { object: false, array: false }],
     },
     overrides: [
         {
             files: ["*.ts", "*.tsx"],
             rules: {
                 "@typescript-eslint/explicit-function-return-type": ["off"],
+            },
+        },
+        {
+            files: ["*.jsx"],
+            rules: {
+                "object-curly-newline": ["off"],
             },
         },
     ],

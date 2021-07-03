@@ -9,15 +9,8 @@ import Loader from "app/components/Loader"
 import Content from "app/components/Content"
 // Style
 import styles from "./product.module.css"
-const {
-    imageDetailCard,
-    productDescription,
-    productSize,
-    productPrice,
-    detailContent,
-    quantity,
-    quantityComponent,
-} = styles
+const { imageDetailCard, productDescription, productSize, productPrice, detailContent, quantity, quantityComponent } =
+    styles
 // Utils
 import { formatMoney } from "utils/format_money"
 import { upperLetters } from "utils/string_cases"
