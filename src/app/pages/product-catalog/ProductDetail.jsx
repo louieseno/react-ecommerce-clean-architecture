@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useLocation } from "react-router-dom"
 import { fetchJacket } from "app/redux/jackets/jackets.actions"
+import { fetchDress } from "app/redux/dress/dress.actions"
 // Components
 import Loader from "app/components/Loader"
 import Content from "app/components/Content"
@@ -27,20 +28,38 @@ export default function ProductDetail() {
     const { id } = useParams()
     // Selector
     const jacket = useSelector((state) => state.jackets.jacket)
+    const dress = useSelector((state) => state.dresses.dress)
     const loadingJacket = useSelector((state) => state.jackets.loading)
     // States
     const [product, setProduct] = useState(null)
+    const [category, setCategory] = useState(null)
 
     useEffect(() => {
-        console.log(location.state.category)
-        dispatch(fetchJacket(id))
-    }, [])
-
-    useEffect(() => {
-        if (jacket) {
-            setProduct(jacket)
+        const _category = location.state.category
+        setCategory(_category)
+        if (_category === "dresses") {
+            dispatch(fetchDress(id))
+        } else {
+            dispatch(fetchJacket(id))
         }
-    }, [jacket])
+    }, [location])
+
+    useEffect(() => {
+        switch (category) {
+            case "dresses":
+                if (dress) {
+                    setProduct(dress)
+                }
+                break
+            case "jackets":
+                if (jacket) {
+                    setProduct(jacket)
+                }
+                break
+            default:
+                break
+        }
+    }, [jacket, dress, category])
 
     return (
         <Content>

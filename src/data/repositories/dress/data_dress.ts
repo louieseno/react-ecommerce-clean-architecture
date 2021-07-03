@@ -21,7 +21,6 @@ function _mapSnapshotToEntities(snapshot: any) {
 export class DataDressRepository implements Repository {
     async getDresses(): Promise<Entity[]> {
         try {
-            console.log("halkas")
             const db = firebase.firestore()
             const snapshot = await db.collection("dressCollection").get()
             const dresses = _mapSnapshotToEntities(snapshot.docs)

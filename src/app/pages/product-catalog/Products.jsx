@@ -66,7 +66,7 @@ function ProductCatalog() {
     function onNavigate(product) {
         history.push({
             pathname: `products/${product.key}`,
-            state: { caegory: category },
+            state: { category: category },
         })
     }
     function onChangeCategory(category) {
@@ -98,8 +98,8 @@ function ProductCatalog() {
                         <li>
                             <a
                                 href="#dress"
-                                className={`${category === "dress" ? `${customActive}` : ""}`}
-                                onClick={() => onChangeCategory("dress")}
+                                className={`${category === "dresses" ? `${customActive}` : ""}`}
+                                onClick={() => onChangeCategory("dresses")}
                             >
                                 Dress
                             </a>
@@ -112,8 +112,8 @@ function ProductCatalog() {
                         {(loadingJacket || loadingDress) && <Loader />}
                         {notLoading() && (
                             <div className="columns is-8 is-multiline">
-                                {products.map((jacket) => {
-                                    return _productCard(jacket, onNavigate)
+                                {products.map((product) => {
+                                    return _productCard(product, onNavigate)
                                 })}
                             </div>
                         )}
