@@ -11,7 +11,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [12.x]
+                node-version: [14.x]
 
         steps:
             - uses: actions/checkout@v1
@@ -26,7 +26,7 @@ jobs:
 
             - name: yarn build
               run: |
-                  yarn run build
+                  yarn run build --if-present
 
             - name: Add remote origin
               run: |
