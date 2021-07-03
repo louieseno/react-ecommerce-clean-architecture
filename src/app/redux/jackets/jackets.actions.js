@@ -1,6 +1,6 @@
-import { DataJacketsRepository as DataRepository } from "data/repositories/jackets/data_jackets"
-import { FetchJacketsUseCase as FetchJackets } from "domain/usecases/jackets/fetch_jackets"
-import { FetchJacketUseCase as FetchJacket } from "domain/usecases/jackets/fetch_jacket"
+import { DataJacketRepository as DataRepository } from "data/repositories/jacket/data_jacket"
+import { FetchJacketsUseCase as FetchJackets } from "domain/usecases/jacket/fetch_jackets"
+import { FetchJacketUseCase as FetchJacket } from "domain/usecases/jacket/fetch_jacket"
 import { fetching, fetchJacketsSuccess, fetchJacketSuccess, fetchingFailed } from "./jackets.reducers"
 
 const _repository = new DataRepository()

@@ -1,4 +1,4 @@
-import { Jackets as Entity } from "domain/entities/jackets"
+import { Jacket as Entity } from "domain/entities/jacket"
 
 export interface JacketsRepository {
     getJackets(): Promise<Entity[]>

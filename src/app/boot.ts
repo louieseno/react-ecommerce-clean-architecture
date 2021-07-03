@@ -7,6 +7,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import faq from "app/redux/faq/faq.reducers"
 import policies from "app/redux/return-policies/policies.reducers"
 import jackets from "app/redux/jackets/jackets.reducers"
+import dresses from "app/redux/dress/dress.reducers"
 
 let firebaseConfig = {}
 if (process.env.NODE_ENV === "production") {
@@ -22,6 +23,7 @@ export const store = configureStore({
     reducer: {
         faq,
         jackets,
+        dresses,
         policies,
     },
     middleware: getDefaultMiddleware({

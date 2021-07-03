@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initalState = {
     jackets: [],
     jacket: null,
-    loading: true,
+    loading: false,
 }
 
 const jacketsSlice = createSlice({

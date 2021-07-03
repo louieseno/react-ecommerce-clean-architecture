@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { fetchJackets } from "app/redux/jackets/jackets.actions"
+import { fetchDresses } from "app/redux/dress/dress.actions"
 // Components
 import Content from "app/components/Content"
 import Loader from "app/components/Loader"
@@ -43,15 +44,41 @@ function ProductCatalog() {
     const dispatch = useDispatch()
     const history = useHistory()
     const [category, setCategory] = useState("jackets")
+    const [products, setProducts] = useState([])
+
+    const jackets = useSelector((state) => state.jackets.jackets)
+    const dresses = useSelector((state) => state.dresses.dresses)
+    const loadingJacket = useSelector((state) => state.jackets.loading)
+    const loadingDress = useSelector((state) => state.dresses.loading)
+
     useEffect(() => {
         dispatch(fetchJackets())
     }, [dispatch])
 
-    const jackets = useSelector((state) => state.jackets.jackets)
-    const loadingJacket = useSelector((state) => state.jackets.loading)
+    useEffect(() => {
+        if (category === "jackets") {
+            setProducts(jackets)
+        } else {
+            setProducts(dresses)
+        }
+    }, [jackets, dresses])
 
     function onNavigate(product) {
-        history.push(`products/${product.key}`)
+        history.push({
+            pathname: `products/${product.key}`,
+            state: { caegory: category },
+        })
+    }
+    function onChangeCategory(category) {
+        setCategory(category)
+        if (category === "jackets") {
+            dispatch(fetchJackets())
+        } else {
+            dispatch(fetchDresses())
+        }
+    }
+    function notLoading() {
+        return !loadingDress && !loadingJacket
     }
     return (
         <Content>
@@ -63,7 +90,7 @@ function ProductCatalog() {
                             <a
                                 href="#jackets"
                                 className={`${category === "jackets" ? `${customActive}` : ""}`}
-                                onClick={() => setCategory("jackets")}
+                                onClick={() => onChangeCategory("jackets")}
                             >
                                 Jackets
                             </a>
@@ -72,7 +99,7 @@ function ProductCatalog() {
                             <a
                                 href="#dress"
                                 className={`${category === "dress" ? `${customActive}` : ""}`}
-                                onClick={() => setCategory("dress")}
+                                onClick={() => onChangeCategory("dress")}
                             >
                                 Dress
                             </a>
@@ -82,10 +109,10 @@ function ProductCatalog() {
 
                 <div className="container column is-10">
                     <div className="section">
-                        {loadingJacket && <Loader />}
-                        {!loadingJacket && (
+                        {(loadingJacket || loadingDress) && <Loader />}
+                        {notLoading() && (
                             <div className="columns is-8 is-multiline">
-                                {jackets.map((jacket) => {
+                                {products.map((jacket) => {
                                     return _productCard(jacket, onNavigate)
                                 })}
                             </div>

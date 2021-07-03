@@ -1,4 +1,4 @@
-export class Jackets {
+export class Dress {
     constructor(
         key: string,
         category: string,
@@ -17,8 +17,8 @@ export class Jackets {
         this.price = price
     }
 
-    static fromJSON(data: any): Jackets {
-        return new Jackets(data.key, data.category, data.name, data.size, data.type, data.filePath, data.price)
+    static fromJSON(data: any): Dress {
+        return new Dress(data.key, data.category, data.name, data.size, data.type, data.filePath, data.price)
     }
 
     public key: string

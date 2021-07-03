@@ -1,7 +1,7 @@
 // Package
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { fetchJacket } from "app/redux/jackets/jackets.actions"
 // Components
 import Loader from "app/components/Loader"
@@ -23,6 +23,7 @@ import { upperLetters } from "utils/string_cases"
 import { sizeMapper } from "utils/size_mapper"
 export default function ProductDetail() {
     const dispatch = useDispatch()
+    const location = useLocation()
     const { id } = useParams()
     // Selector
     const jacket = useSelector((state) => state.jackets.jacket)
@@ -31,6 +32,7 @@ export default function ProductDetail() {
     const [product, setProduct] = useState(null)
 
     useEffect(() => {
+        console.log(location.state.category)
         dispatch(fetchJacket(id))
     }, [])
 
