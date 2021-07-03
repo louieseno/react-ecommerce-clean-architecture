@@ -1,7 +1,7 @@
 import React from "react"
 import { useLocation } from "react-router-dom"
 import Content from "app/components/Content"
-import styles from "./details.module.css"
+import styles from "../details.module.css"
 const { detailSubHeader, detailWrapper, infoImage, faqNavigatorBlock } = styles
 
 function FAQDetails() {

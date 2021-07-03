@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initalState = {
-    jackets: [],
+    data: [],
     jacket: null,
     loading: false,
 }
@@ -17,7 +17,7 @@ const jacketsSlice = createSlice({
             state.loading = false
         },
         fetchJacketsSuccess: (state, action) => {
-            state.jackets = action.payload
+            state.data = action.payload
             state.loading = false
         },
         fetchJacketSuccess: (state, action) => {

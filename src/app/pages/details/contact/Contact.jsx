@@ -1,6 +1,6 @@
 import React from "react"
 import Content from "app/components/Content"
-import styles from "./details.module.css"
+import styles from "../details.module.css"
 const { detailHeader, detailWrapper, infoImage } = styles
 
 function Contact() {

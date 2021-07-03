@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import React, { Fragment } from "react"
 import Content from "app/components/Content"
 import Loader from "app/components/Loader"
-import { fetchFAQ } from "app/redux/faq/faq.actions"
-import styles from "./details.module.css"
+
+import styles from "../details.module.css"
+import { controller } from "./controller"
 const { infoImage, detailSubHeader, detailsWrapper, faqLinkBlock } = styles
 
 function _categoryBlock(category, onNavigate) {
@@ -27,23 +26,7 @@ function _categoryBlock(category, onNavigate) {
 }
 
 function FAQ() {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    useEffect(() => {
-        dispatch(fetchFAQ())
-    }, [dispatch])
-
-    const data = useSelector((state) => state.faq.data)
-    const loading = useSelector((state) => state.faq.loading)
-
-    function _navigateLink(category, key) {
-        history.push("/faq/details", {
-            category: category.key,
-            answer: category.answers[key],
-            question: category.questions[key],
-        })
-    }
-
+    const { data, loading, navigateLink } = controller()
     return (
         <Content>
             <Fragment>
@@ -51,7 +34,7 @@ function FAQ() {
                 {!loading && (
                     <div className={`columns is-centered hero-body ${infoImage}`}>
                         {data.map((faqCategory) => {
-                            return _categoryBlock(faqCategory, _navigateLink)
+                            return _categoryBlock(faqCategory, navigateLink)
                         })}
                     </div>
                 )}

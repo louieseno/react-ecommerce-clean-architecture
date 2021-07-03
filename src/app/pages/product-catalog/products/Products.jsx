@@ -1,19 +1,17 @@
 // Package
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
-import { fetchJackets } from "app/redux/jackets/jackets.actions"
-import { fetchDresses } from "app/redux/dress/dress.actions"
+import React from "react"
+
 // Components
 import Content from "app/components/Content"
 import Loader from "app/components/Loader"
 // Style
-import styles from "./product.module.css"
+import styles from "../product.module.css"
 const { productCard, imageCard, customActive } = styles
 // Utils
 import { formatMoney } from "utils/format_money"
 import { upperFirstLetter, upperLetters } from "utils/string_cases"
 import { sizeMapper } from "utils/size_mapper"
+import { controller } from "./controller"
 
 function _productCard(product, onNavigate) {
     return (
@@ -41,45 +39,8 @@ function _productCard(product, onNavigate) {
 }
 
 function ProductCatalog() {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const [category, setCategory] = useState("jackets")
-    const [products, setProducts] = useState([])
+    const { category, products, onChangeCategory, onNavigate, loadingState } = controller()
 
-    const jackets = useSelector((state) => state.jackets.jackets)
-    const dresses = useSelector((state) => state.dresses.dresses)
-    const loadingJacket = useSelector((state) => state.jackets.loading)
-    const loadingDress = useSelector((state) => state.dresses.loading)
-
-    useEffect(() => {
-        dispatch(fetchJackets())
-    }, [dispatch])
-
-    useEffect(() => {
-        if (category === "jackets") {
-            setProducts(jackets)
-        } else {
-            setProducts(dresses)
-        }
-    }, [jackets, dresses])
-
-    function onNavigate(product) {
-        history.push({
-            pathname: `products/${product.key}`,
-            state: { category: category },
-        })
-    }
-    function onChangeCategory(category) {
-        setCategory(category)
-        if (category === "jackets") {
-            dispatch(fetchJackets())
-        } else {
-            dispatch(fetchDresses())
-        }
-    }
-    function notLoading() {
-        return !loadingDress && !loadingJacket
-    }
     return (
         <Content>
             <section className="main-content columns is-fullheight">
@@ -109,8 +70,8 @@ function ProductCatalog() {
 
                 <div className="container column is-10">
                     <div className="section">
-                        {(loadingJacket || loadingDress) && <Loader />}
-                        {notLoading() && (
+                        {loadingState() && <Loader />}
+                        {!loadingState() && (
                             <div className="columns is-8 is-multiline">
                                 {products.map((product) => {
                                     return _productCard(product, onNavigate)

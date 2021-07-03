@@ -1,7 +1,7 @@
 import React from "react"
 import Content from "app/components/Content"
 
-import styles from "./details.module.css"
+import styles from "../details.module.css"
 const { infoText, infoImage, detailHeader, detailWrapper } = styles
 
 function _information(title, paragraph) {

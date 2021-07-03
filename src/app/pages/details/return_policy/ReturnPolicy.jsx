@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { fetchReturnPolicy } from "app/redux/return-policies/policies.actions"
+import React, { Fragment } from "react"
+
 import Content from "app/components/Content"
 import Loader from "app/components/Loader"
-import styles from "./details.module.css"
+import styles from "../details.module.css"
+import { contoller } from "./controller"
 const { detailHeader, detailWrapper, infoImage, policyLinkBlock } = styles
 
 function _policyBlock(policy) {
@@ -20,14 +20,7 @@ function _policyBlock(policy) {
     )
 }
 const ReturnPolicy = () => {
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(fetchReturnPolicy())
-    }, [dispatch])
-
-    const data = useSelector((state) => state.policies.data)
-    const loading = useSelector((state) => state.policies.loading)
-
+    const { data, loading } = contoller()
     return (
         <Content>
             <Fragment>

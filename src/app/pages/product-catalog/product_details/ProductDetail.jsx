@@ -1,63 +1,23 @@
 // Package
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams, useLocation } from "react-router-dom"
-import { fetchJacket } from "app/redux/jackets/jackets.actions"
-import { fetchDress } from "app/redux/dress/dress.actions"
+import React from "react"
 // Components
 import Loader from "app/components/Loader"
 import Content from "app/components/Content"
 // Style
-import styles from "./product.module.css"
+import styles from "../product.module.css"
 const { imageDetailCard, productDescription, productSize, productPrice, detailContent, quantity, quantityComponent } =
     styles
 // Utils
 import { formatMoney } from "utils/format_money"
 import { upperLetters } from "utils/string_cases"
 import { sizeMapper } from "utils/size_mapper"
+import { controller } from "./controller"
 export default function ProductDetail() {
-    const dispatch = useDispatch()
-    const location = useLocation()
-    const { id } = useParams()
-    // Selector
-    const jacket = useSelector((state) => state.jackets.jacket)
-    const dress = useSelector((state) => state.dresses.dress)
-    const loadingJacket = useSelector((state) => state.jackets.loading)
-    // States
-    const [product, setProduct] = useState(null)
-    const [category, setCategory] = useState(null)
-
-    useEffect(() => {
-        const _category = location.state.category
-        setCategory(_category)
-        if (_category === "dresses") {
-            dispatch(fetchDress(id))
-        } else {
-            dispatch(fetchJacket(id))
-        }
-    }, [location])
-
-    useEffect(() => {
-        switch (category) {
-            case "dresses":
-                if (dress) {
-                    setProduct(dress)
-                }
-                break
-            case "jackets":
-                if (jacket) {
-                    setProduct(jacket)
-                }
-                break
-            default:
-                break
-        }
-    }, [jacket, dress, category])
-
+    const { product, loadingState } = controller()
     return (
         <Content>
-            {loadingJacket && <Loader />}
-            {!loadingJacket && product != null && (
+            {loadingState() && <Loader />}
+            {!loadingState() && product != null && (
                 <div className="columns is-centered">
                     <div key={product.key} className="column is-4">
                         <figure className="image is-inline-block">
