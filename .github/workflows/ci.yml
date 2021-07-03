@@ -26,7 +26,7 @@ jobs:
 
             - name: yarn build
               run: |
-                  yarn run build --if-present
+                  yarn run build
 
             - name: Add remote origin
               run: |
