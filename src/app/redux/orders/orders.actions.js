@@ -36,7 +36,7 @@ export function fetchOrder(productId) {
         try {
             const usecase = new FetchOrderUseCase(_repository)
             const order = usecase.execute(productId)
-            dispatch(fetchOrder(order))
+            dispatch(fetchingOrderDetail(order))
         } catch (err) {
             dispatch(requestFailed())
         }
