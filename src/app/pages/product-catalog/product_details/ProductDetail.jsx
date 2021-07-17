@@ -34,7 +34,7 @@ export default function ProductDetail() {
                         <nav className={`breadcrumb ${breadCrumbWrapper}`} aria-label="breadcrumbs">
                             <ul>
                                 <li>
-                                    <a href={`/$`}>{upperLetters(category)}</a>
+                                    <a href={`/${category}`}>{upperLetters(category)}</a>
                                 </li>
                                 <li>
                                     <a href="">{upperLetters(product.name)}</a>
