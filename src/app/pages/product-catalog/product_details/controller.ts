@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchJacket } from "app/redux/jackets/jackets.actions"
 import { fetchDress } from "app/redux/dress/dress.actions"
 import { RootState } from "app/boot"
+import { setOrder } from "app/redux/orders/orders.actions"
+import { Order } from "domain/entities/order"
 
 export function controller() {
     const dispatch = useDispatch()
@@ -51,7 +53,7 @@ export function controller() {
         }
         return true
     }
-
+    // Quantity
     function setQuantity(event: any) {
         setQty(parseInt(event.target.value))
     }
@@ -64,6 +66,21 @@ export function controller() {
         }
         setQty(qty - 1)
     }
+    // Add cart
+    function addToCart() {
+        let item: any = product
+        item = item.toJSON()
+        item.productId = item.key
+        item.rate = item.price
+        item.qty = qty
+        item.price = item.price * qty
+        console.log()
+        try {
+            dispatch(setOrder(Order.fromJSON(item)))
+        } catch (er) {
+            console.log(er)
+        }
+    }
 
-    return { product, qty, loadingState, setQuantity, addQuantity, minusQuantity }
+    return { product, qty, category, loadingState, setQuantity, addQuantity, minusQuantity, addToCart }
 }

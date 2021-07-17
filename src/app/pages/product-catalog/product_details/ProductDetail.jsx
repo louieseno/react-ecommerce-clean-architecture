@@ -7,8 +7,16 @@ import Loader from "app/components/Loader"
 import Content from "app/components/Content"
 // Style
 import styles from "../product.module.css"
-const { imageDetailCard, productDescription, productSize, productPrice, detailContent, quantity, quantityComponent } =
-    styles
+const {
+    imageDetailCard,
+    productDescription,
+    productSize,
+    productPrice,
+    detailContent,
+    quantity,
+    quantityComponent,
+    breadCrumbWrapper,
+} = styles
 // Utils
 import { formatMoney } from "utils/format_money"
 import { upperLetters } from "utils/string_cases"
@@ -16,13 +24,23 @@ import { sizeMapper } from "utils/size_mapper"
 import { controller } from "./controller"
 
 export default function ProductDetail() {
-    const { product, qty, loadingState, setQuantity, addQuantity, minusQuantity } = controller()
+    const { product, qty, category, loadingState, setQuantity, addQuantity, minusQuantity, addToCart } = controller()
     return (
         <Content>
             {loadingState() && <Loader />}
             {!loadingState() && product != null && (
                 <div className="columns is-centered">
                     <div key={product.key} className="column is-4">
+                        <nav className={`breadcrumb ${breadCrumbWrapper}`} aria-label="breadcrumbs">
+                            <ul>
+                                <li>
+                                    <a href={`/${category}`}>{upperLetters(category)}</a>
+                                </li>
+                                <li>
+                                    <a href="">{upperLetters(product.name)}</a>
+                                </li>
+                            </ul>
+                        </nav>
                         <figure className="image is-inline-block">
                             <img src={product.imageUrl} alt={product.name} className={`${imageDetailCard}`} />
                         </figure>
@@ -55,11 +73,11 @@ export default function ProductDetail() {
                                     +
                                 </button>
                             </div>
-                            <button className="button is-primary" style={{ marginTop: 10 }}>
+                            <button className="button is-primary" style={{ marginTop: 10 }} onClick={() => addToCart()}>
                                 <span>
-                                    <FontAwesomeIcon icon={faCartPlus} size={12} />
+                                    <FontAwesomeIcon icon={faCartPlus} />
                                 </span>
-                                Add to cart
+                                Add To Cart
                             </button>
                         </div>
                     </div>

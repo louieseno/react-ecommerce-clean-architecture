@@ -14,12 +14,22 @@ export class DataOrderRepository implements Repository {
     }
 
     getOrders(): Entity[] {
+        const listOfOrders: Entity[] = []
         const orders = this._fetchStorage()
-        return []
+        if (orders) {
+            orders.forEach((order: any) => {
+                listOfOrders.push(Entity.fromJSON(order))
+            })
+        }
+        return listOfOrders
     }
 
     getOrderDetail(productId: string): Entity {
-        this._fetchStorage()
+        const orders = this._fetchStorage()
+        const found = orders.find((order: any) => order.productId === productId)
+        if (found) {
+            return Entity.fromJSON(found)
+        }
         return new Entity()
     }
 
@@ -29,7 +39,7 @@ export class DataOrderRepository implements Repository {
             const found = orders.find((order: any) => order.productId === item.productId)
             if (found) {
                 found.qty += item.qty
-                found.price += found.qty * item.rate
+                found.price = found.qty * item.rate
             }
             localStorage.setItem(_orderKey, JSON.stringify(orders))
         } else {

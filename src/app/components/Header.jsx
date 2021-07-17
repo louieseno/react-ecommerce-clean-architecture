@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons"
 import logo from "assets/img/logo.png"
 import IconButton from "./IconButton"
 import style from "./components.module.css"
@@ -18,7 +18,7 @@ const Header = () => {
                 <nav className={`navbar ${navbarWrapper}`} role="navigation" aria-label="main navigation">
                     <div className="navbar-brand">
                         <div className={`navbar-item ${navbarItem}`}>
-                            <img src={logo} alt="We Wear Where" onClick={() => history.push("/")} />
+                            <img src={logo} alt="We Wear Where" onClick={() => history.push("/jackets")} />
                         </div>
                         <a
                             onClick={() => {
@@ -48,7 +48,7 @@ const Header = () => {
                                         callBack={() => history.push("/auth/v1/login")}
                                     />
                                     <IconButton
-                                        iconData={faCartPlus}
+                                        iconData={faShoppingCart}
                                         iconName={"cart"}
                                         itemTotal={totalItems}
                                         sizeData={"lg"}

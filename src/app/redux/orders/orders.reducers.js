@@ -11,7 +11,6 @@ const ordersSlice = createSlice({
     initialState: initalState,
     reducers: {
         fetchingOrders: (state, action) => {
-            console.log(action.payload)
             state.data = action.payload
             state.loading = false
         },
