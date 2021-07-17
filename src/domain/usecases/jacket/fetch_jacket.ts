@@ -1,4 +1,4 @@
-import { JacketsRepository as Repository } from "domain/repositories/jackets_repository"
+import { JacketRepository as Repository } from "domain/repositories/jacket_repository"
 import { Jacket as Entity } from "domain/entities/jacket"
 
 export class FetchJacketUseCase {

@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/firestore"
 import { Jacket as Entity } from "domain/entities/jacket"
-import { JacketsRepository as Repository } from "domain/repositories/jackets_repository"
+import { JacketRepository as Repository } from "domain/repositories/jacket_repository"
 import { loadImages } from "utils/fetch_image"
 
 function _mapSnapshotToEntity(doc: any) {
