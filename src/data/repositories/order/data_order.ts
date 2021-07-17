@@ -14,7 +14,7 @@ export class DataOrderRepository implements Repository {
     }
 
     getOrders(): Entity[] {
-        this._fetchStorage()
+        const orders = this._fetchStorage()
         return []
     }
 

@@ -1,23 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initalState = {
-    orders: [],
+    data: [],
     orderDetail: null,
     loading: false,
 }
 
 const ordersSlice = createSlice({
-    name: "jackets",
+    name: "orders",
     initialState: initalState,
     reducers: {
-        request: (state) => {
-            state.loading = true
-        },
-        requestFailed: (state) => {
-            state.loading = false
-        },
         fetchingOrders: (state, action) => {
-            state.order = action.payload
+            console.log(action.payload)
+            state.data = action.payload
             state.loading = false
         },
         fetchingOrderDetail: (state, action) => {
@@ -31,5 +26,5 @@ const ordersSlice = createSlice({
     },
 })
 
-export const { request, requestFailed, fetchingOrders } = ordersSlice
+export const { fetchingOrders, fetchingOrderDetail, settingOrder } = ordersSlice.actions
 export default ordersSlice.reducer

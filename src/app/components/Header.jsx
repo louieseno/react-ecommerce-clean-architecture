@@ -4,11 +4,14 @@ import { faCartPlus, faUser } from "@fortawesome/free-solid-svg-icons"
 import logo from "assets/img/logo.png"
 import IconButton from "./IconButton"
 import style from "./components.module.css"
+import { itemCounterContext } from "./controller"
 const { navbarWrapper, navbarItem, navbarEnditems } = style
 
 const Header = () => {
     const history = useHistory()
     const [isActive, setisActive] = useState(false)
+    var totalItems = React.useContext(itemCounterContext)
+
     return (
         <header className="header">
             <div className="content has-text-centered">
@@ -39,11 +42,15 @@ const Header = () => {
                                 <div className={`navbar-end-items ${navbarEnditems}`}>
                                     <IconButton
                                         iconData={faUser}
+                                        iconName={"auth"}
+                                        itemTotal={0}
                                         sizeData={"lg"}
                                         callBack={() => history.push("/auth/v1/login")}
                                     />
                                     <IconButton
                                         iconData={faCartPlus}
+                                        iconName={"cart"}
+                                        itemTotal={totalItems}
                                         sizeData={"lg"}
                                         callBack={() => console.log("here")}
                                     />

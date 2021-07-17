@@ -58,6 +58,16 @@ span {
 /* Icon Button */
 .iconButton {
     cursor: pointer;
+    position: relative;
+}
+.iconBadge {
+    position: absolute;
+    top: -20px;
+    right: -25px;
+    padding: 2px 7px;
+    border-radius: 50%;
+    font-size: 12px !important;
+    background-color: red;
 }
 
 /* Loader */
@@ -135,5 +145,8 @@ span {
 @media only screen and (max-width: 768px) {
     .navbarEnditems > span {
         color: #0ed6a0;
+    }
+    .iconBadge {
+        color: white;
     }
 }

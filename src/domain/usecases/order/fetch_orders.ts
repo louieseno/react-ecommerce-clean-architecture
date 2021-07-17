@@ -6,7 +6,7 @@ export class FetchOrdersUseCase {
     constructor(repository: Repository) {
         this._repository = repository
     }
-    async execute(): Promise<Entity[]> {
-        return await this._repository.getOrders()
+    execute(): Entity[] {
+        return this._repository.getOrders()
     }
 }
