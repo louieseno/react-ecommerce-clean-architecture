@@ -1,5 +1,7 @@
 // Package
 import React from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
 // Components
 import Loader from "app/components/Loader"
 import Content from "app/components/Content"
@@ -12,8 +14,9 @@ import { formatMoney } from "utils/format_money"
 import { upperLetters } from "utils/string_cases"
 import { sizeMapper } from "utils/size_mapper"
 import { controller } from "./controller"
+
 export default function ProductDetail() {
-    const { product, loadingState } = controller()
+    const { product, qty, loadingState, setQuantity, addQuantity, minusQuantity } = controller()
     return (
         <Content>
             {loadingState() && <Loader />}
@@ -39,10 +42,25 @@ export default function ProductDetail() {
                             <p className={productPrice}>{formatMoney.format(product.price)}</p>
                             <div className={quantity}>
                                 <p> Quantity</p>
-                                <button className={quantityComponent}>-</button>
-                                <input className={quantityComponent} type="number"></input>
-                                <button className={quantityComponent}>+</button>
+                                <button className={quantityComponent} onClick={() => minusQuantity()}>
+                                    -
+                                </button>
+                                <input
+                                    className={quantityComponent}
+                                    type="number"
+                                    value={qty}
+                                    onChange={setQuantity}
+                                ></input>
+                                <button className={quantityComponent} onClick={() => addQuantity()}>
+                                    +
+                                </button>
                             </div>
+                            <button className="button is-primary" style={{ marginTop: 10 }}>
+                                <span>
+                                    <FontAwesomeIcon icon={faCartPlus} size={12} />
+                                </span>
+                                Add to cart
+                            </button>
                         </div>
                     </div>
                 </div>

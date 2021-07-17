@@ -9,7 +9,7 @@ export function controller() {
     const dispatch = useDispatch()
     const location: any = useLocation()
     const { id }: any = useParams()
-
+    const [qty, setQty] = useState(1)
     const [product, setProduct] = useState(null)
     const [category, setCategory] = useState("")
 
@@ -52,5 +52,18 @@ export function controller() {
         return true
     }
 
-    return { product, loadingState }
+    function setQuantity(event: any) {
+        setQty(parseInt(event.target.value))
+    }
+    function addQuantity() {
+        setQty(qty + 1)
+    }
+    function minusQuantity() {
+        if (qty == 1) {
+            return
+        }
+        setQty(qty - 1)
+    }
+
+    return { product, qty, loadingState, setQuantity, addQuantity, minusQuantity }
 }
