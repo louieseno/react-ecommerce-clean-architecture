@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 
 const InformationPage = lazy(() => import("./app/pages/details/information/Information"))
 const ContactPage = lazy(() => import("./app/pages/details/contact/Contact"))
@@ -18,6 +18,13 @@ const RouterManager = () => {
         <Router>
             <Suspense fallback={<Loader />}>
                 <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={() => {
+                            return <Redirect to="/jackets" />
+                        }}
+                    />
                     <Route exact path={["/jackets", "/dresses"]} component={ProductsPage} />
                     <Route exact path="/products/:id" component={ProductDetail} />
                     <Route exact path="/details" component={FAQDetails} />

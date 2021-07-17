@@ -19,7 +19,7 @@ export function controller() {
 
     useEffect(() => {
         if (location && location.pathname) {
-            const _category = location.pathname.split("/")[1]
+            const _category = location.pathname.split("/")[1] || "jackets"
             if (_category === "jackets") {
                 dispatch(fetchJackets())
             } else {
