@@ -8,7 +8,6 @@ export const itemCounterContext = React.createContext(0)
 export function contoller() {
     const dispatch = useDispatch()
     const [totalItems, setTotalItems] = useState(0)
-
     const data = useSelector((state: RootState) => state.orders.data)
 
     useEffect(() => {

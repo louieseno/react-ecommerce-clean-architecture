@@ -40,6 +40,8 @@ export class DataOrderRepository implements Repository {
             if (found) {
                 found.qty += item.qty
                 found.price = found.qty * item.rate
+            } else {
+                orders.push(item.toJSON())
             }
             localStorage.setItem(_orderKey, JSON.stringify(orders))
         } else {

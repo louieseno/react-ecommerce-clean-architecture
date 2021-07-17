@@ -9,7 +9,6 @@ const { contentWrapper, mainContent } = style
 
 function Content({ children, includeHeader = true, includeFooter = true }) {
     const { totalItems } = contoller()
-
     return (
         <itemCounterContext.Provider value={totalItems}>
             <div className={`${contentWrapper}`}>
