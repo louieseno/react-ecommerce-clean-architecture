@@ -18,7 +18,7 @@ const RouterManager = () => {
         <Router>
             <Suspense fallback={<Loader />}>
                 <Switch>
-                    <Route exact path={["/jackets", "/dress"]} component={ProductsPage} />
+                    <Route exact path={["/jackets", "/dresses"]} component={ProductsPage} />
                     <Route exact path="/products/:id" component={ProductDetail} />
                     <Route exact path="/details" component={FAQDetails} />
                     <Route exact path="/auth/v1/login" component={LoginPage} />

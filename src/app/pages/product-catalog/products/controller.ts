@@ -35,7 +35,7 @@ export function controller() {
                 case "jackets":
                     setProducts(jackets)
                     break
-                case "dress":
+                case "dresses":
                     setProducts(dresses)
                     break
                 default:
