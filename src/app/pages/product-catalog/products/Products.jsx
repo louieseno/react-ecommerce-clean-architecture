@@ -49,7 +49,7 @@ function ProductCatalog() {
                     <ul className="menu-list">
                         <li>
                             <a
-                                href="#jackets"
+                                href="jackets"
                                 className={`${category === "jackets" ? `${customActive}` : ""}`}
                                 onClick={() => onChangeCategory("jackets")}
                             >
@@ -58,7 +58,7 @@ function ProductCatalog() {
                         </li>
                         <li>
                             <a
-                                href="#dress"
+                                href="dress"
                                 className={`${category === "dresses" ? `${customActive}` : ""}`}
                                 onClick={() => onChangeCategory("dresses")}
                             >

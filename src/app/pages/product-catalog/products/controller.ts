@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchJackets } from "app/redux/jackets/jackets.actions"
@@ -8,8 +8,8 @@ import { RootState } from "app/boot"
 export function controller() {
     const dispatch = useDispatch()
     const history = useHistory()
-
-    const [category, setCategory] = useState("jackets")
+    const location = useLocation()
+    const [category, setCategory] = useState("")
     const [products, setProducts] = useState([])
 
     const jackets = useSelector((state: RootState) => state.jackets.data)
@@ -18,14 +18,29 @@ export function controller() {
     const loadingDress = useSelector((state: RootState) => state.dresses.loading)
 
     useEffect(() => {
-        dispatch(fetchJackets())
+        if (location && location.pathname) {
+            const _category = location.pathname.split("/")[1]
+            if (_category === "jackets") {
+                dispatch(fetchJackets())
+            } else {
+                dispatch(fetchDresses())
+            }
+            setCategory(_category)
+        }
     }, [dispatch])
 
     useEffect(() => {
-        if (category === "jackets") {
-            setProducts(jackets)
-        } else {
-            setProducts(dresses)
+        if (jackets || dresses) {
+            switch (category) {
+                case "jackets":
+                    setProducts(jackets)
+                    break
+                case "dress":
+                    setProducts(dresses)
+                    break
+                default:
+                    return
+            }
         }
     }, [jackets, dresses])
 

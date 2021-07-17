@@ -130,3 +130,10 @@ span {
         transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
     }
 }
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    .navbarEnditems > span {
+        color: #0ed6a0;
+    }
+}
