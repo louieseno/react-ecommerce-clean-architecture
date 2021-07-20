@@ -4,29 +4,48 @@ import { controller } from "./controller"
 
 import styles from "./checkout.module.css"
 import { upperLetters } from "utils/string_cases"
-const { columnWrapper, columnOverride, checkBoxWrapper, levelRightWrapper, imageCard } = styles
+import { formatMoney } from "utils/format_money"
+const {
+    columnWrapper,
+    columnOverride,
+    checkBoxWrapper,
+    contentWrapper,
+    imageCard,
+    contentLeftWrapper,
+    quantityButton,
+    quantityInput,
+    quantityWrapper,
+    headerRightWrapper,
+    contentRightWrapper,
+} = styles
 
 function _productList(order) {
     return (
-        <div key={order.productId} className="level">
+        <div className="level is-mobile">
             {/* LEFT ITEMS */}
-            <div className="level-left">
+            <div className={`level-left ${contentLeftWrapper}`}>
                 <div className="level-item">
                     <label className="checkbox is-5">
-                        <input type="checkbox" className={`${checkBoxWrapper}`} />
+                        <input type="checkbox" style={{ margin: 10 }} />
                         <img className={`image is-64x64 ${imageCard}`} src={order.imageUrl} alt={order.name} />
-                        <span> {upperLetters(order.name)}</span>
+                        <span>{upperLetters(order.name)}</span>
                     </label>
                 </div>
             </div>
             {/* RIGHT ITEMS */}
-            <div className="level-right">
-                <div className={`columns  ${levelRightWrapper}`}>
-                    <p className="column">{order.rate}</p>
-                    <p className="column">{order.qty}</p>
-                    <p className="column">{order.price}</p>
-                    <p className="column">Action</p>
+            <div className={`level-right ${contentRightWrapper}`}>
+                <span className="level-item">{formatMoney.format(order.rate)}</span>
+                <div className={`level-item ${quantityWrapper}`}>
+                    <button className={quantityButton}>-</button>
+                    <input className={quantityInput} type="number" value={order.qty}></input>
+                    <button className={quantityButton}>+</button>
                 </div>
+                <span className="level-item" style={{ color: "red" }}>
+                    {formatMoney.format(order.price)}
+                </span>
+                <button className="level-item button is-small is-danger" style={{ flexGrow: 0.3 }}>
+                    Delete
+                </button>
             </div>
         </div>
     )
@@ -49,20 +68,18 @@ export default function Checkout() {
                             </div>
                         </div>
                         {/* RIGHT ITEMS */}
-                        <div className="level-right">
-                            <div className={`columns ${levelRightWrapper}`}>
-                                <p className="column">Unit Price</p>
-                                <p className="column">Quantity</p>
-                                <p className="column">Total Price</p>
-                                <p className="column">Action</p>
-                            </div>
+                        <div className={`level-right ${headerRightWrapper}`}>
+                            <strong className="level-item">Unit Price</strong>
+                            <strong className="level-item">Quantity</strong>
+                            <strong className="level-item">Total Price</strong>
+                            <strong className="level-item">Action</strong>
                         </div>
                     </div>
                 </div>
             </div>
             {/* ITEM LIST */}
-            <div className={`columns ${columnWrapper}`}>
-                <div className={`${columnOverride} column box is-full`}>
+            <div className={`columns ${contentWrapper}`}>
+                <div className={` column box is-full`}>
                     {data.map((order) => {
                         return _productList(order)
                     })}
