@@ -19,7 +19,7 @@ const {
     contentRightWrapper,
 } = styles
 
-function _productList(order) {
+function _productList(order, onDelete) {
     return (
         <div className="level is-mobile">
             {/* LEFT ITEMS */}
@@ -43,7 +43,11 @@ function _productList(order) {
                 <span className="level-item" style={{ color: "red" }}>
                     {formatMoney.format(order.price)}
                 </span>
-                <button className="level-item button is-small is-danger" style={{ flexGrow: 0.3 }}>
+                <button
+                    className="level-item button is-small is-danger"
+                    style={{ flexGrow: 0.3 }}
+                    onClick={() => onDelete(order)}
+                >
                     Delete
                 </button>
             </div>
@@ -51,7 +55,7 @@ function _productList(order) {
     )
 }
 export default function Checkout() {
-    const { data } = controller()
+    const { data, deleteOrder } = controller()
     return (
         <Content>
             {/* HEADER */}
@@ -81,7 +85,7 @@ export default function Checkout() {
             <div className={`columns ${contentWrapper}`}>
                 <div className={` column box is-full`}>
                     {data.map((order) => {
-                        return _productList(order)
+                        return _productList(order, deleteOrder)
                     })}
                 </div>
             </div>

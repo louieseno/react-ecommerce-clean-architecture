@@ -1,15 +1,24 @@
 import { DataOrderRepository as DataRepository } from "data/repositories/order/data_order"
 import { FetchOrderUseCase } from "domain/usecases/order/fetch_order"
 import { FetchOrdersUseCase } from "domain/usecases/order/fetch_orders"
+import { RemoveOrderUseCase } from "domain/usecases/order/remove_order"
 import { SetOrderUseCase } from "domain/usecases/order/set_order_usecase"
-import { fetchingOrders, fetchingOrderDetail, settingOrder } from "./orders.reducers"
+import { fetchingOrders, fetchingOrderDetail } from "./orders.reducers"
 const _repository = new DataRepository()
 
 export function setOrder(item) {
     return function (dispatch) {
         const usecase = new SetOrderUseCase(_repository)
-        const order = usecase.execute(item)
-        dispatch(settingOrder(order))
+        usecase.execute(item)
+        dispatch(fetchOrders())
+    }
+}
+
+export function removeOrder(productIds) {
+    return function (dispatch) {
+        const usecase = new RemoveOrderUseCase(_repository)
+        usecase.execute(productIds)
+        dispatch(fetchOrders())
     }
 }
 
