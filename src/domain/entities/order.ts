@@ -4,6 +4,7 @@ export class Order {
     public category = ""
     public size = ""
     public type = ""
+    public imageUrl = ""
     public qty = 1
     public rate = 0
     public price = 0
@@ -15,6 +16,7 @@ export class Order {
         order.category = data.category
         order.size = data.size
         order.type = data.type
+        order.imageUrl = data.imageUrl
         order.qty = data.qty
         order.rate = data.rate
         order.price = data.price
@@ -28,6 +30,7 @@ export class Order {
             category: this.category,
             size: this.size,
             type: this.type,
+            imageUrl: this.imageUrl,
             qty: this.qty,
             rate: this.rate,
             price: this.price,

@@ -10,7 +10,7 @@ const LoginPage = lazy(() => import("./app/pages/authentication/Login"))
 const RegisterPage = lazy(() => import("./app/pages/authentication/Register"))
 const ProductsPage = lazy(() => import("./app/pages/product-catalog/products/Products"))
 const ProductDetail = lazy(() => import("./app/pages/product-catalog/product_details/ProductDetail"))
-
+const Checkout = lazy(() => import("app/pages/checkout/Checkout"))
 import Loader from "./app/components/Loader"
 
 const RouterManager = () => {
@@ -35,6 +35,7 @@ const RouterManager = () => {
                     <Route exact path="/faq" component={FAQPage} />
                     <Route exact path="/faq/details" component={FAQDetails} />
                     <Route exact path="/return-policy" component={ReturnPolicy} />
+                    <Route exact path="/checkout" component={Checkout} />
                 </Switch>
             </Suspense>
         </Router>

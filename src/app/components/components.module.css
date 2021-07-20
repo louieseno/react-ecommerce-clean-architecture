@@ -19,6 +19,10 @@
     flex: 1;
 }
 /* Footer */
+.footerOveride {
+    padding: 1rem 1.5rem 6rem !important;
+    margin-top: 20px !important;
+}
 .footWrapper > div > p:not(:last-child) {
     font-weight: bold;
 }

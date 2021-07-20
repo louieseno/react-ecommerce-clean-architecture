@@ -1,0 +1,32 @@
+/* HEADER */
+.columnWrapper {
+    margin: 5px;
+    margin-bottom: 10px;
+}
+.columnOverride {
+    padding: 1em !important;
+}
+.checkBoxWrapper {
+    margin-right: 20px;
+    margin-left: 5px;
+}
+
+.levelRightWrapper > p {
+    font-weight: bold;
+    /* align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0; */
+}
+/* CONTENT */
+.imageCard {
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 425px) {
+    .headerWrapper {
+        display: none;
+    } /* hide on mobile */
+}

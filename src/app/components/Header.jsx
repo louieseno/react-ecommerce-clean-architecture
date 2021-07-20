@@ -52,7 +52,7 @@ const Header = () => {
                                         iconName={"cart"}
                                         itemTotal={totalItems}
                                         sizeData={"lg"}
-                                        callBack={() => console.log("here")}
+                                        callBack={() => history.push("/checkout")}
                                     />
                                 </div>
                             </div>

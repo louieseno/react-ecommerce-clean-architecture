@@ -2,7 +2,7 @@ import React from "react"
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import IconButton from "./IconButton"
 import style from "./components.module.css"
-const { footWrapper } = style
+const { footWrapper, footerOveride } = style
 
 const _openSocialMedia = (url) => {
     window.open(url, "_blank")
@@ -10,7 +10,7 @@ const _openSocialMedia = (url) => {
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className={`footer ${footerOveride}`}>
             <div className="container">
                 <div className={`content columns ${footWrapper}`}>
                     <div className="column">

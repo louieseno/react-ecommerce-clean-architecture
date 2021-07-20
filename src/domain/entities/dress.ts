@@ -43,6 +43,7 @@ export class Dress {
             type: this.type,
             filePath: this.filePath,
             price: this.price,
+            imageUrl: this.imageUrl,
         }
     }
 }
