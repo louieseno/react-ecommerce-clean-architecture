@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchJacket } from "app/redux/jackets/jackets.actions"
 import { fetchDress } from "app/redux/dress/dress.actions"
 import { RootState } from "app/boot"
-import { setOrder } from "app/redux/orders/orders.actions"
+import { addOrder } from "app/redux/orders/orders.actions"
 import { Order } from "domain/entities/order"
+import { Quantity } from "app/utils/type_quantity"
 
 export function controller() {
     const dispatch = useDispatch()
@@ -54,17 +55,24 @@ export function controller() {
         return true
     }
     // Quantity
-    function setQuantity(event: any) {
-        setQty(parseInt(event.target.value))
-    }
-    function addQuantity() {
-        setQty(qty + 1)
-    }
-    function minusQuantity() {
-        if (qty == 1) {
-            return
+    function updateQuantity(type: Quantity, event?: any) {
+        switch (type) {
+            case Quantity.Add:
+                setQty(qty + 1)
+                break
+            case Quantity.Minus:
+                if (qty === 1) {
+                    break
+                }
+                setQty(qty - 1)
+                break
+            case Quantity.Input:
+                const newQty = parseInt(event.target.value || "1")
+                setQty(newQty)
+                break
+            default:
+                break
         }
-        setQty(qty - 1)
     }
     // Add cart
     function addToCart() {
@@ -74,13 +82,12 @@ export function controller() {
         item.rate = item.price
         item.qty = qty
         item.price = item.price * qty
-        console.log()
         try {
-            dispatch(setOrder(Order.fromJSON(item)))
+            dispatch(addOrder(Order.fromJSON(item)))
         } catch (er) {
             console.log(er)
         }
     }
 
-    return { product, qty, category, loadingState, setQuantity, addQuantity, minusQuantity, addToCart }
+    return { product, qty, category, loadingState, updateQuantity, addToCart }
 }

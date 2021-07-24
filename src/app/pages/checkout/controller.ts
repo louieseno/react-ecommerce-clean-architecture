@@ -1,5 +1,6 @@
 import { RootState } from "app/boot"
-import { fetchOrders, removeOrder } from "app/redux/orders/orders.actions"
+import { editOrder, fetchOrders, removeOrder } from "app/redux/orders/orders.actions"
+import { Quantity } from "app/utils/type_quantity"
 import { Order } from "domain/entities/order"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,6 +16,29 @@ export function controller() {
     useEffect(() => {
         dispatch(fetchOrders())
     }, [dispatch])
+
+    function updateQuantity(product: Order, type: Quantity, event?: any) {
+        switch (type) {
+            case Quantity.Add:
+                product.qty++
+                dispatch(editOrder(product))
+                break
+            case Quantity.Minus:
+                if (product.qty === 1) {
+                    break
+                }
+                product.qty--
+                dispatch(editOrder(product))
+                break
+            case Quantity.Input:
+                const newQty = parseInt(event.target.value || "1")
+                product.qty = newQty
+                dispatch(editOrder(product))
+                break
+            default:
+                break
+        }
+    }
 
     function deleteOrder(product: Order) {
         dispatch(removeOrder([product.productId]))
@@ -64,5 +88,15 @@ export function controller() {
             }
         }
     }
-    return { data, productIds, checkedAll, onCheckAll, onItemCheck, deleteOrder, deleteAllOrders, goToProducts }
+    return {
+        data,
+        productIds,
+        checkedAll,
+        onCheckAll,
+        onItemCheck,
+        updateQuantity,
+        deleteOrder,
+        deleteAllOrders,
+        goToProducts,
+    }
 }

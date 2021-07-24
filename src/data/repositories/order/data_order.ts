@@ -33,7 +33,7 @@ export class DataOrderRepository implements Repository {
         return new Entity()
     }
 
-    setOrder(item: Entity): void {
+    addOrder(item: Entity): void {
         const orders = this._fetchStorage()
         if (orders) {
             const found = orders.find((order: any) => order.productId === item.productId)
@@ -47,6 +47,19 @@ export class DataOrderRepository implements Repository {
         } else {
             const orders = []
             orders.push(item.toJSON())
+            localStorage.setItem(_orderKey, JSON.stringify(orders))
+        }
+        return
+    }
+
+    editOrder(item: Entity): void {
+        const orders = this._fetchStorage()
+        if (orders) {
+            const found = orders.find((order: any) => order.productId === item.productId)
+            if (found) {
+                found.qty = item.qty
+                found.price = found.qty * item.rate
+            }
             localStorage.setItem(_orderKey, JSON.stringify(orders))
         }
         return

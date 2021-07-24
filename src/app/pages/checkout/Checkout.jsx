@@ -7,6 +7,7 @@ import { upperLetters } from "utils/string_cases"
 import { formatMoney } from "utils/format_money"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { Quantity } from "app/utils/type_quantity"
 const {
     columnWrapper,
     columnOverride,
@@ -20,8 +21,7 @@ const {
     contentRightWrapper,
     emptyCard,
 } = styles
-
-function _productList(order, deleteOrder, productIds, onItemCheck) {
+function _productList(order, updateQuantity, deleteOrder, productIds, onItemCheck) {
     return (
         <div key={order.productId} className="level is-mobile">
             {/* LEFT ITEMS */}
@@ -43,14 +43,18 @@ function _productList(order, deleteOrder, productIds, onItemCheck) {
             <div className={`level-right ${contentRightWrapper}`}>
                 <span className="level-item">{formatMoney.format(order.rate)}</span>
                 <div className={`level-item ${quantityWrapper}`}>
-                    <button className={quantityButton}>-</button>
+                    <button className={quantityButton} onClick={() => updateQuantity(order, Quantity.Minus)}>
+                        -
+                    </button>
                     <input
                         className={quantityInput}
                         type="number"
                         value={order.qty}
-                        onChange={(event) => console.log(event)}
+                        onChange={(event) => updateQuantity(order, Quantity.Input, event)}
                     ></input>
-                    <button className={quantityButton}>+</button>
+                    <button className={quantityButton} onClick={() => updateQuantity(order, Quantity.Add)}>
+                        +
+                    </button>
                 </div>
                 <span className="level-item" style={{ color: "red" }}>
                     {formatMoney.format(order.price)}
@@ -119,6 +123,7 @@ function _productTable(checkoutController) {
                     {checkoutController.data.map((order) => {
                         return _productList(
                             order,
+                            checkoutController.updateQuantity,
                             checkoutController.deleteOrder,
                             checkoutController.productIds,
                             checkoutController.onItemCheck,

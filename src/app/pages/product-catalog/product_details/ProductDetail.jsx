@@ -22,9 +22,10 @@ import { formatMoney } from "utils/format_money"
 import { upperLetters } from "utils/string_cases"
 import { sizeMapper } from "utils/size_mapper"
 import { controller } from "./controller"
+import { Quantity } from "app/utils/type_quantity"
 
 export default function ProductDetail() {
-    const { product, qty, category, loadingState, setQuantity, addQuantity, minusQuantity, addToCart } = controller()
+    const { product, qty, category, loadingState, updateQuantity, addToCart } = controller()
     return (
         <Content>
             {loadingState() && <Loader />}
@@ -60,16 +61,16 @@ export default function ProductDetail() {
                             <p className={productPrice}>{formatMoney.format(product.price)}</p>
                             <div className={quantity}>
                                 <p> Quantity</p>
-                                <button className={quantityComponent} onClick={() => minusQuantity()}>
+                                <button className={quantityComponent} onClick={() => updateQuantity(Quantity.Minus)}>
                                     -
                                 </button>
                                 <input
                                     className={quantityComponent}
                                     type="number"
                                     value={qty}
-                                    onChange={setQuantity}
+                                    onChange={(event) => updateQuantity(Quantity.Input, event)}
                                 ></input>
-                                <button className={quantityComponent} onClick={() => addQuantity()}>
+                                <button className={quantityComponent} onClick={() => updateQuantity(Quantity.Add)}>
                                     +
                                 </button>
                             </div>
