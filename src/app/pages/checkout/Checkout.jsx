@@ -6,11 +6,10 @@ import styles from "./checkout.module.css"
 import { upperLetters } from "utils/string_cases"
 import { formatMoney } from "utils/format_money"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
+import { faCartPlus, faTrash } from "@fortawesome/free-solid-svg-icons"
 const {
     columnWrapper,
     columnOverride,
-    checkBoxWrapper,
     contentWrapper,
     imageCard,
     contentLeftWrapper,
@@ -22,14 +21,19 @@ const {
     emptyCard,
 } = styles
 
-function _productList(order, deleteOrder) {
+function _productList(order, deleteOrder, productIds, onItemCheck) {
     return (
-        <div className="level is-mobile">
+        <div key={order.productId} className="level is-mobile">
             {/* LEFT ITEMS */}
             <div className={`level-left ${contentLeftWrapper}`}>
                 <div className="level-item">
                     <label className="checkbox is-5">
-                        <input type="checkbox" style={{ margin: 10 }} />
+                        <input
+                            type="checkbox"
+                            checked={productIds.includes(order.productId)}
+                            style={{ margin: 10 }}
+                            onChange={(e) => onItemCheck(e, order.productId)}
+                        />
                         <img className={`image is-64x64 ${imageCard}`} src={order.imageUrl} alt={order.name} />
                         <span>{upperLetters(order.name)}</span>
                     </label>
@@ -40,25 +44,32 @@ function _productList(order, deleteOrder) {
                 <span className="level-item">{formatMoney.format(order.rate)}</span>
                 <div className={`level-item ${quantityWrapper}`}>
                     <button className={quantityButton}>-</button>
-                    <input className={quantityInput} type="number" value={order.qty}></input>
+                    <input
+                        className={quantityInput}
+                        type="number"
+                        value={order.qty}
+                        onChange={(event) => console.log(event)}
+                    ></input>
                     <button className={quantityButton}>+</button>
                 </div>
                 <span className="level-item" style={{ color: "red" }}>
                     {formatMoney.format(order.price)}
                 </span>
-                <button
-                    className="level-item button is-small is-danger"
-                    style={{ flexGrow: 0.3 }}
-                    onClick={() => deleteOrder(order)}
-                >
-                    Delete
-                </button>
+                {productIds.includes(order.productId) && (
+                    <button
+                        className="level-item button is-small is-danger"
+                        style={{ flexGrow: 0 }}
+                        onClick={() => deleteOrder(order)}
+                    >
+                        Delete
+                    </button>
+                )}
             </div>
         </div>
     )
 }
 
-function _productTable(data, deleteOrder) {
+function _productTable(checkoutController) {
     return (
         <Fragment>
             {/* HEADER */}
@@ -69,9 +80,23 @@ function _productTable(data, deleteOrder) {
                         <div className="level-left">
                             <div className="level-item">
                                 <label className="checkbox is-5">
-                                    <input type="checkbox" className={`${checkBoxWrapper}`} />
+                                    <input
+                                        type="checkbox"
+                                        checked={checkoutController.checkedAll}
+                                        style={{ margin: 10 }}
+                                        onChange={() => checkoutController.onCheckAll()}
+                                    />
                                     <strong>Product</strong>
                                 </label>
+                                {checkoutController.checkedAll && (
+                                    <FontAwesomeIcon
+                                        icon={faTrash}
+                                        size={"lg"}
+                                        style={{ marginLeft: 20 }}
+                                        color="red"
+                                        onClick={() => checkoutController.deleteAllOrders()}
+                                    />
+                                )}
                             </div>
                         </div>
                         {/* RIGHT ITEMS */}
@@ -79,7 +104,11 @@ function _productTable(data, deleteOrder) {
                             <strong className="level-item">Unit Price</strong>
                             <strong className="level-item">Quantity</strong>
                             <strong className="level-item">Total Price</strong>
-                            <strong className="level-item">Action</strong>
+                            {checkoutController.productIds.length > 0 && (
+                                <strong className="level-item" style={{ flexGrow: 0 }}>
+                                    Action
+                                </strong>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -87,8 +116,13 @@ function _productTable(data, deleteOrder) {
             {/* ITEM LIST */}
             <div className={`columns ${contentWrapper}`}>
                 <div className={` column box is-full`}>
-                    {data.map((order) => {
-                        return _productList(order, deleteOrder)
+                    {checkoutController.data.map((order) => {
+                        return _productList(
+                            order,
+                            checkoutController.deleteOrder,
+                            checkoutController.productIds,
+                            checkoutController.onItemCheck,
+                        )
                     })}
                 </div>
             </div>
@@ -96,13 +130,13 @@ function _productTable(data, deleteOrder) {
     )
 }
 
-function _emptyCart(goToProducts) {
+function _emptyCart(checkoutController) {
     return (
         <div className="columns is-centered hero-body">
             <div className={`column has-text-centered ${emptyCard}`}>
                 <FontAwesomeIcon icon={faCartPlus} size={"4x"} />
                 <p className="is-size-6">Your shopping cart is empty.</p>
-                <button className="button is-primary" onClick={() => goToProducts()}>
+                <button className="button is-primary" onClick={() => checkoutController.goToProducts()}>
                     Go Shopping Now
                 </button>
             </div>
@@ -111,11 +145,11 @@ function _emptyCart(goToProducts) {
 }
 
 export default function Checkout() {
-    const { data, deleteOrder, goToProducts } = controller()
+    const checkoutController = controller()
     return (
         <Content>
-            {data.length > 0 && _productTable(data, deleteOrder)}
-            {data.length <= 0 && _emptyCart(goToProducts)}
+            {checkoutController.data.length > 0 && _productTable(checkoutController)}
+            {checkoutController.data.length <= 0 && _emptyCart(checkoutController)}
         </Content>
     )
 }

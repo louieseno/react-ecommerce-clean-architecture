@@ -5,17 +5,14 @@
     margin-bottom: 10px;
 }
 .columnOverride {
-    padding: 1em !important;
+    padding: 1em 0.5em !important;
 }
-.checkBoxWrapper {
-    margin-right: 20px;
-    margin-left: 5px;
-}
+
 .headerRightWrapper {
-    flex-grow: 0.28 !important;
+    flex-grow: 0.2 !important;
 }
 .contentRightWrapper {
-    flex-grow: 0.25 !important;
+    flex-grow: 0.1 !important;
 }
 .contentLeftWrapper {
     justify-content: left !important;
@@ -60,6 +57,9 @@
 
 @media screen and (min-width: 2560px) {
     .headerRightWrapper {
-        flex-grow: 0.25 !important;
+        flex-grow: 0.18 !important;
+    }
+    .contentRightWrapper {
+        flex-grow: 0.12 !important;
     }
 }
