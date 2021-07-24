@@ -33,7 +33,7 @@
 
 .quantityInput {
     width: 100px;
-    padding: 5px 0px;
+    padding: 5px 10px;
     text-align: center;
     background: transparent;
     border: 1px solid black;
@@ -48,8 +48,7 @@
 .emptyCard {
     padding: 2rem;
 }
-.emptyCard > p,
-button {
+.emptyCard > * {
     margin-top: 10px;
 }
 
