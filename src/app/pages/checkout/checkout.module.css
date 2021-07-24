@@ -45,6 +45,13 @@
     border: 1px solid black;
     font-size: 16px;
 }
+.emptyCard {
+    padding: 2rem;
+}
+.emptyCard > p,
+button {
+    margin-top: 10px;
+}
 
 @media screen and (max-width: 425px) {
     .columnWrapper {

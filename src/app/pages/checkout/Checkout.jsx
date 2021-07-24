@@ -1,10 +1,12 @@
-import React from "react"
+import React, { Fragment } from "react"
 import Content from "app/components/Content"
 import { controller } from "./controller"
 
 import styles from "./checkout.module.css"
 import { upperLetters } from "utils/string_cases"
 import { formatMoney } from "utils/format_money"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons"
 const {
     columnWrapper,
     columnOverride,
@@ -17,9 +19,10 @@ const {
     quantityWrapper,
     headerRightWrapper,
     contentRightWrapper,
+    emptyCard,
 } = styles
 
-function _productList(order, onDelete) {
+function _productList(order, deleteOrder) {
     return (
         <div className="level is-mobile">
             {/* LEFT ITEMS */}
@@ -46,7 +49,7 @@ function _productList(order, onDelete) {
                 <button
                     className="level-item button is-small is-danger"
                     style={{ flexGrow: 0.3 }}
-                    onClick={() => onDelete(order)}
+                    onClick={() => deleteOrder(order)}
                 >
                     Delete
                 </button>
@@ -54,10 +57,10 @@ function _productList(order, onDelete) {
         </div>
     )
 }
-export default function Checkout() {
-    const { data, deleteOrder } = controller()
+
+function _productTable(data, deleteOrder) {
     return (
-        <Content>
+        <Fragment>
             {/* HEADER */}
             <div className={`columns ${columnWrapper}`}>
                 <div className={`column box is-full ${columnOverride}`}>
@@ -89,6 +92,30 @@ export default function Checkout() {
                     })}
                 </div>
             </div>
+        </Fragment>
+    )
+}
+
+function _emptyCart(goToProducts) {
+    return (
+        <div className="columns is-centered hero-body">
+            <div className={`column has-text-centered ${emptyCard}`}>
+                <FontAwesomeIcon icon={faCartPlus} size={"4x"} />
+                <p className="is-size-6">Your shopping cart is empty.</p>
+                <button className="button is-primary" onClick={() => goToProducts()}>
+                    Go Shopping Now
+                </button>
+            </div>
+        </div>
+    )
+}
+
+export default function Checkout() {
+    const { data, deleteOrder, goToProducts } = controller()
+    return (
+        <Content>
+            {data.length > 0 && _productTable(data, deleteOrder)}
+            {data.length <= 0 && _emptyCart(goToProducts)}
         </Content>
     )
 }
