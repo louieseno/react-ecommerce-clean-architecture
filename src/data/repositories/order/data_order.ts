@@ -71,7 +71,6 @@ export class DataOrderRepository implements Repository {
             productIds.forEach((id: any) => {
                 const index = orders.findIndex((order: any) => order.productId === id)
                 if (index !== -1) {
-                    console.log(index)
                     orders.splice(index, 1)
                 }
             })

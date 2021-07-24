@@ -13,6 +13,7 @@ export function controller() {
     const data = useSelector((state: RootState) => state.orders.data)
     const [checkedAll, setCheckAll] = useState(false)
     const [productIds, setProductIds] = useState([] as string[])
+    const [mobileOrder, setMobileOrder] = useState<Order | null>(null)
     useEffect(() => {
         dispatch(fetchOrders())
     }, [dispatch])
@@ -88,10 +89,16 @@ export function controller() {
             }
         }
     }
+
+    function onShowMobileOrder(order: Order) {
+        setMobileOrder(order)
+    }
     return {
         data,
         productIds,
         checkedAll,
+        mobileOrder,
+        onShowMobileOrder,
         onCheckAll,
         onItemCheck,
         updateQuantity,

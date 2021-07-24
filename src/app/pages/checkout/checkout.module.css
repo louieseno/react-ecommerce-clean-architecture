@@ -24,6 +24,7 @@
 }
 
 /* CONTENT */
+
 .imageCard {
     margin-right: 3px;
 }
@@ -48,11 +49,27 @@
 .emptyCard > * {
     margin-top: 10px;
 }
-
+.modalCard {
+    width: 70% !important;
+}
+.modalCard > section > p {
+    font-size: 14px !important;
+    margin-bottom: 5px;
+}
+.modalCard > footer {
+    justify-content: flex-end !important;
+}
 @media screen and (max-width: 425px) {
-    .columnWrapper {
-        display: none;
-    } /* hide on mobile */
+    .headerRightWrapper,
+    .productList {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 426px) {
+    .productMobile {
+        display: none !important;
+    }
 }
 
 @media screen and (min-width: 2560px) {
