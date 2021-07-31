@@ -1,4 +1,4 @@
-import { DataFaqRepository as DataRepository } from "data/repositories/faq/data_faq_repository"
+import { DataFaqRepository as DataRepository } from "data/repositories/faq/data_faq"
 import { FetchFaqUseCase as FetchUseCase } from "domain/usecases/faq/fetch_faq"
 import { fetchFailure, fetchRequest, fetchSuccess } from "./faq.reducers"
 

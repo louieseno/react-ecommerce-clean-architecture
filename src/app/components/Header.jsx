@@ -1,17 +1,17 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faShoppingCart, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import logo from "assets/img/logo.png"
 import IconButton from "./IconButton"
 import style from "./components.module.css"
-import { itemCounterContext } from "./controller"
-const { navbarWrapper, navbarItem, navbarEnditems } = style
+import { contoller } from "./controller"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+const { navbarWrapper, navbarItem, navbarEnditems, dropDown } = style
 
 const Header = () => {
     const history = useHistory()
     const [isActive, setisActive] = useState(false)
-    var totalItems = React.useContext(itemCounterContext)
-
+    const { totalItems, user, userDropDown, onUserDropDown, onSignOut } = contoller()
     return (
         <header className="header">
             <div className="content has-text-centered">
@@ -40,13 +40,41 @@ const Header = () => {
                         <div className="navbar-end">
                             <div className="navbar-item">
                                 <div className={`navbar-end-items ${navbarEnditems}`}>
-                                    <IconButton
-                                        iconData={faUser}
-                                        iconName={"auth"}
-                                        itemTotal={0}
-                                        sizeData={"lg"}
-                                        callBack={() => history.push("/auth/login")}
-                                    />
+                                    {user ? (
+                                        <div
+                                            className={`dropdown ${userDropDown ? "is-active" : ""}`}
+                                            onClick={() => onUserDropDown()}
+                                        >
+                                            <div className="dropdown-trigger">
+                                                <div className={dropDown}>
+                                                    <span>{user.username}</span>
+                                                    <span className="icon is-small">
+                                                        <i className="fa fa-angle-down" aria-hidden="true"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="dropdown-menu has-text-left" id="dropdown-menu" role="menu">
+                                                <button
+                                                    className="button is-danger is-light"
+                                                    onClick={() => onSignOut()}
+                                                >
+                                                    <span>Sign Out</span>
+                                                    <span className="icon">
+                                                        <FontAwesomeIcon icon={faSignOutAlt} size={"sm"} />
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <IconButton
+                                            iconData={faUser}
+                                            iconName={"auth"}
+                                            itemTotal={0}
+                                            sizeData={"lg"}
+                                            callBack={() => history.push("/auth/login")}
+                                        />
+                                    )}
+
                                     <IconButton
                                         iconData={faShoppingCart}
                                         iconName={"cart"}

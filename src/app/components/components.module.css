@@ -58,6 +58,12 @@ span {
     background-color: #0ed6a0;
     height: 4rem;
 }
+.dropDown {
+    color: #fff !important;
+    font-size: 16;
+    font-weight: 500;
+    cursor: pointer;
+}
 
 /* Icon Button */
 .iconButton {
