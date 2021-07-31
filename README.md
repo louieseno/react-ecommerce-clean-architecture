@@ -8,6 +8,7 @@ An E-Commerce website for a local thrift store.
   3. Redux w/ Redux-toolkit: For State Management
   4. Firebase: As a DataBase
   5. Bulma: Css Framework
+  6. Formik w/ Yup validation
 ## Live demo
 https://we-wear-where.herokuapp.com/
 
