@@ -28,8 +28,8 @@ const RouterManager = () => {
                     <Route exact path={["/jackets", "/dresses"]} component={ProductsPage} />
                     <Route exact path="/products/:id" component={ProductDetail} />
                     <Route exact path="/details" component={FAQDetails} />
-                    <Route exact path="/auth/v1/login" component={LoginPage} />
-                    <Route exact path="/auth/v1/register" component={RegisterPage} />
+                    <Route exact path="/auth/login" component={LoginPage} />
+                    <Route exact path="/auth/register" component={RegisterPage} />
                     <Route exact path="/information" component={InformationPage} />
                     <Route exact path="/contact" component={ContactPage} />
                     <Route exact path="/faq" component={FAQPage} />

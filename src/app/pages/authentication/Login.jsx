@@ -32,7 +32,7 @@ function Login() {
                             <div className={`${forgotPassword} columns is-1`}>
                                 <div className="column">Not a member yet?</div>
                                 <div className="column">
-                                    <a href="/auth/v1/register">Create Account</a>
+                                    <a href="/auth/register">Create Account</a>
                                 </div>
                             </div>
                         </div>

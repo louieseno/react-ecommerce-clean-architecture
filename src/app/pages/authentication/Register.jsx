@@ -45,7 +45,7 @@ function Register() {
 
                         <div className={`${authUtilsWrapper} columns`}>
                             <div className="column">
-                                Already have an account? <a href="/auth/v1/login">Login</a>
+                                Already have an account? <a href="/auth/login">Login</a>
                             </div>
                         </div>
                     </div>

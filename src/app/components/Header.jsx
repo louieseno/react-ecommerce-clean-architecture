@@ -45,7 +45,7 @@ const Header = () => {
                                         iconName={"auth"}
                                         itemTotal={0}
                                         sizeData={"lg"}
-                                        callBack={() => history.push("/auth/v1/login")}
+                                        callBack={() => history.push("/auth/login")}
                                     />
                                     <IconButton
                                         iconData={faShoppingCart}
