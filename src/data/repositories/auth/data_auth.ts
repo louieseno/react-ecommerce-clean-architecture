@@ -23,7 +23,7 @@ export class DataAuthRepository implements Repository {
         try {
             const { email, password } = values
             const data = await firebase.auth().signInWithEmailAndPassword(email.trim().toLowerCase(), password)
-            console.log(data)
+
             if (data) {
                 const db = firebase.firestore()
                 const userName = await (await db.collection("users").doc(data.user?.uid).get()).data()?.userName
