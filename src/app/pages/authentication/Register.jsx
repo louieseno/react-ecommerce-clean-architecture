@@ -2,11 +2,11 @@ import React from "react"
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import Content from "app/components/Content"
+import Loader from "app/components/Loader"
 import { FormField } from "app/components/FormFields"
 import logo from "assets/img/logo.png"
 import style from "./authentication.module.css"
 import { controller } from "./controller"
-import Loader from "app/components/Loader"
 const { cardWrapper, authUtilsWrapper } = style
 
 function Register() {

@@ -1,8 +1,9 @@
 import { DataAuthRepository } from "data/repositories/auth/data_auth"
 import { GetAuthUserUseCase as GetUser } from "domain/usecases/auth/get_auth_user"
+import { SignInUseCase as SignIn } from "domain/usecases/auth/sign_in"
 import { SignOutUseCase as SignOut } from "domain/usecases/auth/sign_out"
 import { SignUpUseCase as SignUp } from "domain/usecases/auth/sign_up"
-import { getAuthFailed, getAuthSuccess, loadingAuth, signOutUser, signUpFailed, signUpSuccess } from "./auth.reducers"
+import { failedAuthUser, getAuthSuccess, loadingAuth, signOutUser } from "./auth.reducers"
 
 const _repository = new DataAuthRepository()
 
@@ -19,17 +20,21 @@ export function signOut() {
         }
     }
 }
+export function signIn(values) {
+    return async function (dispatch) {
+        dispatch(loadingAuth())
+        const usecase = new SignIn(_repository)
+        await usecase.execute(values)
+        dispatch(getAuthUser())
+    }
+}
 
 export function signUp(values) {
     return async function (dispatch) {
         dispatch(loadingAuth())
-        try {
-            const usecase = new SignUp(_repository)
-            const data = await usecase.execute(values)
-            dispatch(signUpSuccess(data))
-        } catch (err) {
-            dispatch(signUpFailed())
-        }
+        const usecase = new SignUp(_repository)
+        await usecase.execute(values)
+        dispatch(getAuthUser())
     }
 }
 
@@ -40,7 +45,7 @@ export function getAuthUser() {
             const data = usecase.execute()
             dispatch(getAuthSuccess(data))
         } catch (err) {
-            dispatch(getAuthFailed())
+            dispatch(failedAuthUser())
         }
     }
 }

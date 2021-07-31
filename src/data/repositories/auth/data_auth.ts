@@ -19,6 +19,22 @@ export class DataAuthRepository implements Repository {
         localStorage.removeItem(_key)
         return await firebase.auth().signOut()
     }
+    async signIn(values: any): Promise<any> {
+        try {
+            const { email, password } = values
+            const data = await firebase.auth().signInWithEmailAndPassword(email.trim().toLowerCase(), password)
+            console.log(data)
+            if (data) {
+                const db = firebase.firestore()
+                const userName = await (await db.collection("users").doc(data.user?.uid).get()).data()?.userName
+                const authUser = { username: userName, uid: data.user?.uid }
+                localStorage.setItem(_key, JSON.stringify(authUser))
+                return authUser
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     async signUp(values: any): Promise<any> {
         try {

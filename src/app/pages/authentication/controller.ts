@@ -1,5 +1,5 @@
 import { RootState } from "app/boot"
-import { signUp } from "app/redux/auth/auth.actions"
+import { signIn, signUp } from "app/redux/auth/auth.actions"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -12,12 +12,14 @@ export function controller() {
     const loading = useSelector((state: RootState) => state.auth.loading)
 
     useEffect(() => {
-        // Sign up success
         if (userAuth) {
             onNavigateHome()
         }
     }, [userAuth])
 
+    function onSignIn(values: any) {
+        dispatch(signIn(values))
+    }
     function onSignUp(values: any) {
         dispatch(signUp(values))
     }
@@ -25,5 +27,5 @@ export function controller() {
     function onNavigateHome() {
         history.push("/jackets")
     }
-    return { loading, onSignUp, onNavigateHome }
+    return { loading, onSignIn, onSignUp, onNavigateHome }
 }
