@@ -1,6 +1,6 @@
 export interface AuthRepository {
-    signIn(values: any): Promise<any>
-    signUp(values: any): Promise<any>
+    signIn(values: any): Promise<void>
+    signUp(values: any): Promise<void>
     signOut(): Promise<void>
-    getAuthUser(): any
+    getAuthUser(): Promise<any>
 }

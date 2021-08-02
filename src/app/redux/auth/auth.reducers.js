@@ -16,22 +16,6 @@ const authSlice = createSlice({
             state.user = null
             state.loading = false
         },
-        // signInUser: (state, action) => {
-        //     state.user = action.payload
-        //     state.loading = false
-        // },
-        // signInUser: (state) => {
-        //     state.user = null
-        //     state.loading = false
-        // },
-        // signUpSuccess: (state, action) => {
-        //     state.user = action.payload
-        //     state.loading = false
-        // },
-        // signUpFailed: (state) => {
-        //     state.user = null
-        //     state.loading = false
-        // },
         getAuthSuccess(state, action) {
             state.user = action.payload
             state.loading = false

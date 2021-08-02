@@ -5,7 +5,7 @@ export class GetAuthUserUseCase {
     constructor(repository: Repository) {
         this._repository = repository
     }
-    execute(): Promise<any> {
-        return this._repository.getAuthUser()
+    async execute(): Promise<any> {
+        return await this._repository.getAuthUser()
     }
 }

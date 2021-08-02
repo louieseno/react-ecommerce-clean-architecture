@@ -2,41 +2,34 @@ import "firebase/firestore"
 import firebase from "firebase/app"
 import { AuthRepository as Repository } from "domain/repositories/auth_repository"
 
-const _key = "wwwUser"
 export class DataAuthRepository implements Repository {
-    getAuthUser(): any {
+    async getAuthUser(): Promise<any> {
         try {
-            const data = localStorage.getItem(_key)
-            if (data) {
-                return JSON.parse(data)
+            const db = firebase.firestore()
+            const current = firebase.auth().currentUser
+            if (current) {
+                const user = await db.collection("users").doc(current.uid).get()
+                const username = user.get("userName")
+                return { uid: current.uid, username }
             }
             return
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            throw err
         }
     }
     async signOut(): Promise<void> {
-        localStorage.removeItem(_key)
         return await firebase.auth().signOut()
     }
-    async signIn(values: any): Promise<any> {
+    async signIn(values: any): Promise<void> {
         try {
             const { email, password } = values
-            const data = await firebase.auth().signInWithEmailAndPassword(email.trim().toLowerCase(), password)
-
-            if (data) {
-                const db = firebase.firestore()
-                const userName = await (await db.collection("users").doc(data.user?.uid).get()).data()?.userName
-                const authUser = { username: userName, uid: data.user?.uid }
-                localStorage.setItem(_key, JSON.stringify(authUser))
-                return authUser
-            }
-        } catch (e) {
-            console.log(e)
+            await firebase.auth().signInWithEmailAndPassword(email.trim().toLowerCase(), password)
+        } catch (err) {
+            throw err
         }
     }
 
-    async signUp(values: any): Promise<any> {
+    async signUp(values: any): Promise<void> {
         try {
             const { userName, email, password } = values
             const data = await firebase.auth().createUserWithEmailAndPassword(email.trim().toLowerCase(), password)
@@ -48,12 +41,9 @@ export class DataAuthRepository implements Repository {
                     },
                     { merge: true },
                 )
-                const authUser = { username: userName, uid: data.user?.uid }
-                localStorage.setItem(_key, JSON.stringify(authUser))
-                return authUser
             }
-        } catch (e) {
-            console.log(e)
+        } catch (err) {
+            throw err
         }
     }
 }

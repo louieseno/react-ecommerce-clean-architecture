@@ -23,26 +23,34 @@ export function signOut() {
 export function signIn(values) {
     return async function (dispatch) {
         dispatch(loadingAuth())
-        const usecase = new SignIn(_repository)
-        await usecase.execute(values)
-        dispatch(getAuthUser())
+        try {
+            const usecase = new SignIn(_repository)
+            await usecase.execute(values)
+            dispatch(getAuthUser())
+        } catch (err) {
+            throw err
+        }
     }
 }
 
 export function signUp(values) {
     return async function (dispatch) {
         dispatch(loadingAuth())
-        const usecase = new SignUp(_repository)
-        await usecase.execute(values)
-        dispatch(getAuthUser())
+        try {
+            const usecase = new SignUp(_repository)
+            await usecase.execute(values)
+            dispatch(getAuthUser())
+        } catch (err) {
+            throw err
+        }
     }
 }
 
 export function getAuthUser() {
-    return function (dispatch) {
+    return async function (dispatch) {
         try {
             const usecase = new GetUser(_repository)
-            const data = usecase.execute()
+            const data = await usecase.execute()
             dispatch(getAuthSuccess(data))
         } catch (err) {
             dispatch(failedAuthUser())

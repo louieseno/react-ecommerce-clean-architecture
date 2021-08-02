@@ -5,7 +5,7 @@ export class SignInUseCase {
     constructor(repository: Repository) {
         this._repository = repository
     }
-    async execute(values: any): Promise<any> {
+    async execute(values: any): Promise<void> {
         return await this._repository.signIn(values)
     }
 }
