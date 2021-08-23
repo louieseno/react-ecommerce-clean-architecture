@@ -2,12 +2,13 @@ import { lazy } from "react"
 const InformationPage = lazy(() => import("app/pages/details/information/Information"))
 const ContactPage = lazy(() => import("app/pages/details/contact/Contact"))
 const FAQPage = lazy(() => import("app/pages/details/faq/FAQ"))
-const FAQDetails = lazy(() => import("app/pages/details/faq/FAQDetails"))
-const ReturnPolicy = lazy(() => import("app/pages/details/return_policy/ReturnPolicy"))
+const FAQDetailsPage = lazy(() => import("app/pages/details/faq/FAQDetails"))
+const ReturnPolicyPage = lazy(() => import("app/pages/details/return_policy/ReturnPolicy"))
 const LoginPage = lazy(() => import("app/pages/authentication/Login"))
 const RegisterPage = lazy(() => import("app/pages/authentication/Register"))
 const ProductsPage = lazy(() => import("app/pages/product-catalog/products/Products"))
-const ProductDetail = lazy(() => import("app/pages/product-catalog/product_details/ProductDetail"))
+const ProductDetailPage = lazy(() => import("app/pages/product-catalog/product_details/ProductDetail"))
+const CartPage = lazy(() => import("app/pages/cart/Cart"))
 const Checkout = lazy(() => import("app/pages/checkout/Checkout"))
 
 export const pathConfig = [
@@ -18,12 +19,12 @@ export const pathConfig = [
     },
     {
         key: "productDetailPage",
-        component: ProductDetail,
+        component: ProductDetailPage,
         path: ["/products/:id"],
     },
     {
         key: "faqDetailPage",
-        component: FAQDetails,
+        component: FAQDetailsPage,
         path: ["/details", "/faq/details"],
     },
     {
@@ -53,8 +54,13 @@ export const pathConfig = [
     },
     {
         key: "returnPolicyPage",
-        component: ReturnPolicy,
+        component: ReturnPolicyPage,
         path: ["/return-policy"],
+    },
+    {
+        key: "cartPage",
+        component: CartPage,
+        path: ["/cart"],
     },
     {
         key: "checkoutPage",

@@ -80,7 +80,7 @@ const Header = () => {
                                         iconName={"cart"}
                                         itemTotal={totalItems}
                                         sizeData={"lg"}
-                                        callBack={() => history.push("/checkout")}
+                                        callBack={() => history.push("/cart")}
                                     />
                                 </div>
                             </div>

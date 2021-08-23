@@ -53,6 +53,10 @@ export function controller() {
         history.push("/")
     }
 
+    function goToCheckout() {
+        history.push("/checkout")
+    }
+
     function onCheckAll() {
         setCheckAll(!checkedAll)
         const tempIds = [...productIds]
@@ -93,11 +97,20 @@ export function controller() {
     function onShowMobileOrder(order: Order) {
         setMobileOrder(order)
     }
+
+    function grandTotal() {
+        const selectedOrder: any[] = data.filter((product: Order) => productIds.includes(product.productId))
+        const total = selectedOrder.reduce(function (acc: number, obj: Order) {
+            return acc + obj.price
+        }, 0.0)
+        return total || 0.0
+    }
     return {
         data,
         productIds,
         checkedAll,
         mobileOrder,
+        grandTotal,
         onShowMobileOrder,
         onCheckAll,
         onItemCheck,
@@ -105,5 +118,6 @@ export function controller() {
         deleteOrder,
         deleteAllOrders,
         goToProducts,
+        goToCheckout,
     }
 }
