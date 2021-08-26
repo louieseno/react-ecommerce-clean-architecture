@@ -2,7 +2,7 @@ import React from "react"
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
 import { FormField } from "app/components/FormFields"
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
+import { CardElement } from "@stripe/react-stripe-js"
 
 import Content from "app/components/Content"
 

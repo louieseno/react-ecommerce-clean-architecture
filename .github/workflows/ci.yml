@@ -18,15 +18,15 @@ jobs:
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
 
-            - name: yarn install
+            - name: npm install
               run: |
-                  yarn install
+                  npm install
               env:
                   CI: true
 
-            - name: yarn build
+            - name: npm build
               run: |
-                  yarn run build --if-present
+                  npm run build
 
             - name: Add remote origin
               run: |
