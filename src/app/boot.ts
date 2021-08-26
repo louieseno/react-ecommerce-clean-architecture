@@ -10,12 +10,8 @@ import jackets from "app/redux/jackets/jackets.reducers"
 import dresses from "app/redux/dress/dress.reducers"
 import orders from "app/redux/orders/orders.reducers"
 import auth from "app/redux/auth/auth.reducers"
-let firebaseConfig = {}
-if (process.env.NODE_ENV === "production") {
-    firebaseConfig = require("app/config/production")
-} else {
-    firebaseConfig = require("app/config/development")
-}
+const firebaseConfig = require("app/config/firebase")
+console.log(firebaseConfig)
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
 }

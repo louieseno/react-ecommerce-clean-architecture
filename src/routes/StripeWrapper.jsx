@@ -2,9 +2,7 @@ import React from "react"
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import PropTypes from "prop-types"
-const stripe = require("app/config/stripe")
-const stripePromise = loadStripe(stripe.pk)
-
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK)
 // To best leverage Stripe’s advanced fraud functionality,
 // include this script on every page, not just the checkout page.
 // This allows Stripe to detect anomalous behavior that may be indicative

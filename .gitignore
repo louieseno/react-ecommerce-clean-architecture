@@ -10,8 +10,7 @@
 
 # production
 /build
-/src/app/config/development.js
-/src/app/config/stripe.js
+/.env
 
 # misc
 .DS_Store
