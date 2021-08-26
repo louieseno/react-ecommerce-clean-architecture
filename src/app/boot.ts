@@ -11,7 +11,7 @@ import dresses from "app/redux/dress/dress.reducers"
 import orders from "app/redux/orders/orders.reducers"
 import auth from "app/redux/auth/auth.reducers"
 const firebaseConfig = require("app/config/firebase")
-console.log(firebaseConfig)
+
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
 }
