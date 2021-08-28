@@ -11,8 +11,6 @@
 # production
 /build
 /.env
-/.vscode
-/.eslintcache
 
 # misc
 .DS_Store
