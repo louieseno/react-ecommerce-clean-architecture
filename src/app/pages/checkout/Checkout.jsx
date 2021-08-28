@@ -3,9 +3,11 @@ import * as Yup from "yup"
 import { Formik, Form } from "formik"
 import { FormField } from "app/components/FormFields"
 import { CardElement } from "@stripe/react-stripe-js"
-
 import Content from "app/components/Content"
 
+import { controller } from "./controller"
+import PhoneInputField from "app/components/PhoneInputField"
+import AddressField from "app/components/AddressField"
 const iframeStyles = {
     base: {
         fontSize: "16px",
@@ -29,6 +31,8 @@ const cardElementOpts = {
 }
 
 export default function Checkout() {
+    const { onSubmit } = controller()
+
     return (
         <Content>
             <div className="hero-body columns is-centered">
@@ -39,19 +43,25 @@ export default function Checkout() {
                             initialValues={{
                                 name: "",
                                 email: "",
-                                address: "",
+                                phone: "",
+                                country: "",
+                                region: "",
                             }}
                             validationSchema={Yup.object({
                                 name: Yup.string().required("Name required."),
                                 email: Yup.string().email("Invalid email address.").required("Email required."),
-                                address: Yup.string().required("Address required."),
+                                country: Yup.string().required("Country required."),
+                                region: Yup.string().required("Region required."),
+                                phone: Yup.string().required("Phone required."),
                             })}
-                            onSubmit={(values) => console.log(values)}
+                            onSubmit={(values) => onSubmit(values)}
                         >
                             <Form>
                                 <FormField label="Name" type="text" name="name" placeholder="Enter Name" />
                                 <FormField label="Email" type="email" name="email" placeholder="Enter Email" />
-                                <FormField label="Address" type="text" name="address" placeholder="Enter Address" />
+                                <AddressField />
+                                <PhoneInputField />
+
                                 <div
                                     style={{
                                         border: "1px solid #DBDBDB",
