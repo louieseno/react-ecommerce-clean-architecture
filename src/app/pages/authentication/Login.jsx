@@ -5,7 +5,7 @@ import Content from "app/components/Content"
 import Loader from "app/components/Loader"
 import logo from "assets/img/logo.png"
 import style from "./authentication.module.css"
-import { FormField } from "app/components/FormFields"
+import { FormField } from "app/components/Form/FormFields"
 import { controller } from "./controller"
 
 const { authUtilsWrapper, cardWrapper, forgotPassword } = style

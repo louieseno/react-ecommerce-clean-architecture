@@ -1,13 +1,13 @@
 import React from "react"
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
-import { FormField } from "app/components/FormFields"
+import { FormField } from "app/components/Form/FormFields"
 import { CardElement } from "@stripe/react-stripe-js"
 import Content from "app/components/Content"
 
 import { controller } from "./controller"
-import PhoneInputField from "app/components/PhoneInputField"
-import AddressField from "app/components/AddressField"
+import PhoneInputField from "app/components/Form/PhoneInputField"
+import AddressField from "app/components/Form/AddressField"
 const iframeStyles = {
     base: {
         fontSize: "16px",
@@ -46,12 +46,14 @@ export default function Checkout() {
                                 phone: "",
                                 country: "",
                                 region: "",
+                                address: "",
                             }}
                             validationSchema={Yup.object({
                                 name: Yup.string().required("Name required."),
                                 email: Yup.string().email("Invalid email address.").required("Email required."),
                                 country: Yup.string().required("Country required."),
                                 region: Yup.string().required("Region required."),
+                                address: Yup.string().required("Address required."),
                                 phone: Yup.string().required("Phone required."),
                             })}
                             onSubmit={(values) => onSubmit(values)}
@@ -61,7 +63,6 @@ export default function Checkout() {
                                 <FormField label="Email" type="email" name="email" placeholder="Enter Email" />
                                 <AddressField />
                                 <PhoneInputField />
-
                                 <div
                                     style={{
                                         border: "1px solid #DBDBDB",
