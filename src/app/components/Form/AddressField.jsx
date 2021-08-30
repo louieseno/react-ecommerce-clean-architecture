@@ -1,9 +1,8 @@
 import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-import { ErrorMessage } from "formik"
 import { connect, Field } from "formik"
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector"
-
+import { ErrorFieldMessage } from "./ErrorFieldMessage"
 const dropdownStyle = {
     border: "1px solid #DBDBDB",
     borderRadius: 4,
@@ -23,21 +22,22 @@ const AddressField = (props) => {
                         value={props.formik.values.country}
                         onChange={(val) => props.formik.setFieldValue("country", val)}
                     />
-                    <ErrorMessage name={"country"} render={(msg) => <span className="help is-danger">{msg}</span>} />
+                    <ErrorFieldMessage name="country" />
+                    {/* <ErrorMessage name={"country"} render={(msg) => <span className="help is-danger">{msg}</span>} /> */}
                     <RegionDropdown
                         style={dropdownStyle}
                         country={props.formik.values.country}
                         value={props.formik.values.region}
                         onChange={(val) => props.formik.setFieldValue("region", val)}
                     />
-                    <ErrorMessage name={"region"} render={(msg) => <span className="help is-danger">{msg}</span>} />
+                    <ErrorFieldMessage name="region" />
                     <Field
                         className="textarea is-small"
                         component={"textarea"}
                         name={"address"}
                         placeholder={"Street Name, Building, House Number, City"}
                     />
-                    <ErrorMessage name={"address"} render={(msg) => <span className="help is-danger">{msg}</span>} />
+                    <ErrorFieldMessage name="address" />
                 </Fragment>
             </div>
         </div>

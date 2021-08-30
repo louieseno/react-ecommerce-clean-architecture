@@ -2,37 +2,15 @@ import React from "react"
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
 import { FormField } from "app/components/Form/FormFields"
-import { CardElement } from "@stripe/react-stripe-js"
 import Content from "app/components/Content"
 
 import { controller } from "./controller"
 import PhoneInputField from "app/components/Form/PhoneInputField"
 import AddressField from "app/components/Form/AddressField"
-const iframeStyles = {
-    base: {
-        fontSize: "16px",
-        "::placeholder": {
-            color: "#87bbfd",
-        },
-    },
-    invalid: {
-        iconColor: "red",
-        color: "red",
-    },
-    complete: {
-        iconColor: "#cbf4c9",
-    },
-}
-
-const cardElementOpts = {
-    iconStyle: "solid",
-    style: iframeStyles,
-    hidePostalCode: true,
-}
+import CardInputField from "app/components/Form/CardInputField"
 
 export default function Checkout() {
     const { onSubmit } = controller()
-
     return (
         <Content>
             <div className="hero-body columns is-centered">
@@ -47,6 +25,7 @@ export default function Checkout() {
                                 country: "",
                                 region: "",
                                 address: "",
+                                card: "",
                             }}
                             validationSchema={Yup.object({
                                 name: Yup.string().required("Name required."),
@@ -55,25 +34,18 @@ export default function Checkout() {
                                 region: Yup.string().required("Region required."),
                                 address: Yup.string().required("Address required."),
                                 phone: Yup.string().required("Phone required."),
+                                card: Yup.string().required("Card required."),
                             })}
-                            onSubmit={(values) => onSubmit(values)}
+                            onSubmit={(values) => {
+                                onSubmit(values)
+                            }}
                         >
                             <Form>
                                 <FormField label="Name" type="text" name="name" placeholder="Enter Name" />
                                 <FormField label="Email" type="email" name="email" placeholder="Enter Email" />
                                 <AddressField />
                                 <PhoneInputField />
-                                <div
-                                    style={{
-                                        border: "1px solid #DBDBDB",
-                                        borderRadius: 4,
-                                        color: "#363636",
-                                        padding: 10,
-                                        marginBottom: 10,
-                                    }}
-                                >
-                                    <CardElement options={cardElementOpts} />
-                                </div>
+                                <CardInputField />
                                 <button className="button is-primary is-normal is-fullwidth" type="submit">
                                     Pay
                                 </button>

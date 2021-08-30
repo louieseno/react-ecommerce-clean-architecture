@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { ErrorMessage } from "formik"
 import PhoneInput from "react-phone-input-2"
 import "react-phone-input-2/lib/style.css"
 import { connect } from "formik"
+import { ErrorFieldMessage } from "./ErrorFieldMessage"
 const PhoneInputField = (props) => {
     return (
         <div className="field">
@@ -18,7 +18,7 @@ const PhoneInputField = (props) => {
                     onChange={(value) => props.formik.setFieldValue("phone", value)}
                     inputStyle={{ width: "100%" }}
                 />
-                <ErrorMessage name={"phone"} render={(msg) => <span className="help is-danger">{msg}</span>} />
+                <ErrorFieldMessage name={"phone"} />
             </div>
         </div>
     )
