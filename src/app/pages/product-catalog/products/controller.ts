@@ -1,4 +1,4 @@
-import { useHistory, useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchJackets } from "app/redux/jackets/jackets.actions"
@@ -7,7 +7,7 @@ import { RootState } from "app/boot"
 
 export function controller() {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
     const location = useLocation()
     const [category, setCategory] = useState("")
     const [products, setProducts] = useState([])
@@ -54,8 +54,8 @@ export function controller() {
     }
 
     function onNavigate(product: any) {
-        history.push({
-            pathname: `products/${product.key}`,
+        navigate(`/products/${product.key}`, {
+            replace: true,
             state: { category: category },
         })
     }

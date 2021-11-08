@@ -13,58 +13,63 @@ const Checkout = lazy(() => import("app/pages/checkout/Checkout"))
 
 export const pathConfig = [
     {
-        key: "productPage",
+        key: "homePageJacket",
         component: ProductsPage,
-        path: ["/jackets", "/dresses", "/"],
+        path: "/jackets",
+    },
+    {
+        key: "homePageDress",
+        component: ProductsPage,
+        path: "/dresses",
     },
     {
         key: "productDetailPage",
         component: ProductDetailPage,
-        path: ["/products/:id"],
+        path: "/products/:id",
     },
     {
-        key: "faqDetailPage",
+        key: "faqDetailsPage",
         component: FAQDetailsPage,
-        path: ["/details", "/faq/details"],
+        path: "/faq/details",
     },
     {
         key: "faqPage",
         component: FAQPage,
-        path: ["/faq"],
+        path: "/faq",
     },
     {
         key: "loginPage",
         component: LoginPage,
-        path: ["/auth/login"],
+        path: "/auth/login",
     },
     {
         key: "registerPage",
         component: RegisterPage,
-        path: ["/auth/register"],
+        path: "/auth/register",
     },
     {
         key: "informationPage",
         component: InformationPage,
-        path: ["/information"],
+        path: "/information",
     },
     {
         key: "contactPage",
         component: ContactPage,
-        path: ["/contact"],
+        path: "/contact",
     },
     {
         key: "returnPolicyPage",
         component: ReturnPolicyPage,
-        path: ["/return-policy"],
+        path: "/return-policy",
     },
     {
         key: "cartPage",
         component: CartPage,
-        path: ["/cart"],
+        path: "/cart",
     },
     {
         key: "checkoutPage",
         component: Checkout,
-        path: ["/checkout"],
+        path: "/checkout",
     },
 ]

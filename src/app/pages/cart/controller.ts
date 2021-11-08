@@ -4,12 +4,12 @@ import { Quantity } from "app/utils/type_quantity"
 import { Order } from "domain/entities/order"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export function controller() {
     const dispatch = useDispatch()
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const data = useSelector((state: RootState) => state.orders.data)
     const [checkedAll, setCheckAll] = useState(false)
     const [productIds, setProductIds] = useState([] as string[])
@@ -50,11 +50,11 @@ export function controller() {
     }
 
     function goToProducts() {
-        history.push("/")
+        navigate("/")
     }
 
     function goToCheckout() {
-        history.push("/checkout")
+        navigate("/checkout")
     }
 
     function onCheckAll() {

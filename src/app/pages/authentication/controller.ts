@@ -3,11 +3,11 @@ import { signIn, signUp } from "app/redux/auth/auth.actions"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export function controller() {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
     const userAuth = useSelector((state: RootState) => state.auth.user)
     const loading = useSelector((state: RootState) => state.auth.loading)
 
@@ -25,7 +25,7 @@ export function controller() {
     }
 
     function onNavigateHome() {
-        history.push("/jackets")
+        navigate("/jackets")
     }
     return { loading, onSignIn, onSignUp, onNavigateHome }
 }

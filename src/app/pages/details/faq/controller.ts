@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { fetchFAQ } from "app/redux/faq/faq.actions"
 import { RootState } from "app/boot"
 
 export function controller() {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const navigate = useNavigate()
     useEffect(() => {
         dispatch(fetchFAQ())
     }, [dispatch])
@@ -15,10 +15,12 @@ export function controller() {
     const loading = useSelector((state: RootState) => state.faq.loading)
 
     function navigateLink(category: any, key: string) {
-        history.push("/faq/details", {
-            category: category.key,
-            answer: category.answers[key],
-            question: category.questions[key],
+        navigate("/faq/details", {
+            state: {
+                category: category.key,
+                answer: category.answers[key],
+                question: category.questions[key],
+            },
         })
     }
 

@@ -1,40 +1,31 @@
 import React, { Suspense } from "react"
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Loader from "../app/components/Loader"
 import StripeWrapper from "./StripeWrapper"
 import { pathConfig } from "./path_config"
 
 const RouterManager = () => {
     const routes = (
-        <Router>
+        <BrowserRouter>
             <Suspense fallback={<Loader />}>
-                <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        render={() => {
-                            return <Redirect to="/jackets" />
-                        }}
-                    />
+                <Routes>
+                    <Route exact path="/" element={<Navigate replace to="/jackets" />} />
                     {pathConfig.map((entry) => {
                         return (
                             <Route
                                 key={entry.key}
                                 path={entry.path}
-                                exact
-                                render={() => {
-                                    return (
-                                        <StripeWrapper>
-                                            <entry.component />
-                                        </StripeWrapper>
-                                    )
-                                }}
+                                element={
+                                    <StripeWrapper>
+                                        <entry.component />
+                                    </StripeWrapper>
+                                }
                             />
                         )
                     })}
-                </Switch>
+                </Routes>
             </Suspense>
-        </Router>
+        </BrowserRouter>
     )
 
     return routes

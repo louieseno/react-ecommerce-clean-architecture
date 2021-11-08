@@ -1,15 +1,16 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { faShoppingCart, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import logo from "assets/img/logo.png"
 import IconButton from "./IconButton"
 import style from "./components.module.css"
 import { contoller } from "./controller"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useNavigate } from "react-router-dom"
 const { navbarWrapper, navbarItem, navbarEnditems, dropDown } = style
 
 const Header = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const [isActive, setisActive] = useState(false)
     const { totalItems, user, userDropDown, onUserDropDown, onSignOut } = contoller()
     return (
@@ -18,7 +19,9 @@ const Header = () => {
                 <nav className={`navbar ${navbarWrapper}`} role="navigation" aria-label="main navigation">
                     <div className="navbar-brand">
                         <div className={`navbar-item ${navbarItem}`}>
-                            <img src={logo} alt="We Wear Where" onClick={() => history.push("/jackets")} />
+                            <Link to="/jackets">
+                                <img src={logo} alt="We Wear Where" />
+                            </Link>
                         </div>
                         <a
                             onClick={() => {
@@ -71,7 +74,7 @@ const Header = () => {
                                             iconName={"auth"}
                                             itemTotal={0}
                                             sizeData={"lg"}
-                                            callBack={() => history.push("/auth/login")}
+                                            callBack={() => navigate("/auth/login")}
                                         />
                                     )}
 
@@ -80,7 +83,7 @@ const Header = () => {
                                         iconName={"cart"}
                                         itemTotal={totalItems}
                                         sizeData={"lg"}
-                                        callBack={() => history.push("/cart")}
+                                        callBack={() => navigate("/cart")}
                                     />
                                 </div>
                             </div>
